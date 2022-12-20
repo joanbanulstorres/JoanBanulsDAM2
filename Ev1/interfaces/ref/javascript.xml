@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<instructions>
+<category id="Value properties">
+<instruction>globalThis</instruction>
+<instruction>Infinity</instruction>
+<instruction>NaN</instruction>
+<instruction>undefined</instruction>
+</category>
+
+<category id="Function properties">
+<instruction>eval()</instruction>
+<instruction>isFinite()</instruction>
+<instruction>isNaN()</instruction>
+<instruction>parseFloat()</instruction>
+<instruction>parseInt()</instruction>
+<instruction>decodeURI()</instruction>
+<instruction>decodeURIComponent()</instruction>
+<instruction>encodeURI()</instruction>
+<instruction>encodeURIComponent()</instruction>
+</category>
+
+<category id="Fundamental objects">
+<instruction>Object</instruction>
+<instruction>Function</instruction>
+<instruction>Boolean</instruction>
+<instruction>Symbol</instruction>
+</category>
+
+<category id="Error objects">
+<instruction>Error</instruction>
+<instruction>EvalError</instruction>
+<instruction>RangeError</instruction>
+<instruction>ReferenceError</instruction>
+<instruction>SyntaxError</instruction>
+<instruction>TypeError</instruction>
+<instruction>URIError</instruction>
+<instruction>AggregateError</instruction>
+</category>
+
+<category id="Numbers  dates">
+<instruction>Number</instruction>
+<instruction>BigInt</instruction>
+<instruction>Math</instruction>
+<instruction>Date</instruction>
+</category>
+
+<category id="Text processing">
+<instruction>String</instruction>
+<instruction>RegExp</instruction>
+</category>
+
+<category id="Indexed Collections">
+<instruction>Array</instruction>
+<instruction>Int8Array</instruction>
+<instruction>Uint8Array</instruction>
+<instruction>Uint8ClampedArray</instruction>
+<instruction>Int16Array</instruction>
+<instruction>Uint16Array</instruction>
+<instruction>Int32Array</instruction>
+<instruction>Uint32Array</instruction>
+<instruction>BigInt64Array</instruction>
+<instruction>BigUint64Array</instruction>
+<instruction>Float32Array</instruction>
+<instruction>Float64Array</instruction>
+</category>
+
+<category id="Keyed collections">
+<instruction>Map</instruction>
+<instruction>Set</instruction>
+<instruction>WeakMap</instruction>
+<instruction>WeakSet</instruction>
+</category>
+
+<category id="Structured data">
+<instruction>ArrayBuffer</instruction>
+<instruction>SharedArrayBuffer</instruction>
+<instruction>DataView</instruction>
+<instruction>Atomics</instruction>
+<instruction>JSON</instruction>
+</category>
+
+<category id="Memory management">
+<instruction>WeakRef</instruction>
+<instruction>FinalizationRegistry</instruction>
+</category>
+
+<category id="Control abstraction">
+<instruction>Promise</instruction>
+<instruction>GeneratorFunction</instruction>
+<instruction>AsyncGeneratorFunction</instruction>
+<instruction>Generator</instruction>
+<instruction>AsyncGenerator</instruction>
+<instruction>AsyncFunction</instruction>
+</category>
+
+<category id="Reflection">
+<instruction>Reflect</instruction>
+<instruction>Proxy</instruction>
+</category>
+
+<category id="Internationalization">
+<instruction>Intl</instruction>
+<instruction>Intl.Collator</instruction>
+<instruction>Intl.DateTimeFormat</instruction>
+<instruction>Intl.DisplayNames</instruction>
+<instruction>Intl.ListFormat</instruction>
+<instruction>Intl.Locale</instruction>
+<instruction>Intl.NumberFormat</instruction>
+<instruction>Intl.PluralRules</instruction>
+<instruction>Intl.RelativeTimeFormat</instruction>
+<instruction>Intl.Segmenter</instruction>
+</category>
+
+<category id="WebAssembly">
+<instruction>WebAssembly</instruction>
+<instruction>WebAssembly.Module</instruction>
+<instruction>WebAssembly.Instance</instruction>
+<instruction>WebAssembly.Memory</instruction>
+<instruction>WebAssembly.Table</instruction>
+<instruction>WebAssembly.CompileError</instruction>
+<instruction>WebAssembly.LinkError</instruction>
+<instruction>WebAssembly.RuntimeError</instruction>
+</category>
+
+<category id="Control flow">
+<instruction>Block</instruction>
+<instruction>Empty statement</instruction>
+<instruction>break</instruction>
+<instruction>continue</instruction>
+<instruction>if...else</instruction>
+<instruction>switch</instruction>
+<instruction>throw</instruction>
+<instruction>try...catch</instruction>
+</category>
+
+<category id="Declarations">
+<instruction>var</instruction>
+<instruction>let</instruction>
+<instruction>const</instruction>
+</category>
+
+<category id="Functions and classes">
+<instruction>function</instruction>
+<instruction>function*</instruction>
+<instruction>async function</instruction>
+<instruction>async function*</instruction>
+<instruction>return</instruction>
+<instruction>class</instruction>
+</category>
+
+<category id="Iterations">
+<instruction>do...while</instruction>
+<instruction>for</instruction>
+<instruction>for...in</instruction>
+<instruction>for...of</instruction>
+<instruction>for await...of</instruction>
+<instruction>while</instruction>
+</category>
+
+<category id="Other">
+<instruction>debugger</instruction>
+<instruction>debugger</instruction>
+<instruction>export</instruction>
+<instruction>import</instruction>
+<instruction>label</instruction>
+<instruction>with</instruction>
+<instruction>Expressions and operators</instruction>
+<instruction>JavaScript expressions and operators.</instruction>
+</category>
+
+<category id="Primary expressions">
+<instruction>this</instruction>
+<instruction>function</instruction>
+<instruction>class</instruction>
+<instruction>function*</instruction>
+<instruction>yield</instruction>
+<instruction>yield*</instruction>
+<instruction>async function</instruction>
+<instruction>async function*</instruction>
+<instruction>await</instruction>
+<instruction>[]</instruction>
+<instruction>{}</instruction>
+<instruction>/ab+c/i</instruction>
+<instruction>( )</instruction>
+<instruction>null</instruction>
+</category>
+
+<category id="Left-hand-side expressions">
+<instruction>Property accessors</instruction>
+<instruction>?. (Optional chaining)</instruction>
+<instruction>new</instruction>
+<instruction>new.target</instruction>
+<instruction>import.meta</instruction>
+<instruction>super</instruction>
+<instruction>...obj</instruction>
+</category>
+
+<category id="Increment  decrement">
+<instruction>A++</instruction>
+<instruction>A--</instruction>
+<instruction>++A</instruction>
+<instruction>--A</instruction>
+</category>
+
+<category id="Unary operators">
+<instruction>delete</instruction>
+<instruction>void</instruction>
+<instruction>typeof</instruction>
+<instruction>+</instruction>
+<instruction>-</instruction>
+<instruction>~</instruction>
+<instruction>!</instruction>
+</category>
+
+<category id="Arithmetic operators">
+<instruction>+</instruction>
+<instruction>-</instruction>
+<instruction>/</instruction>
+<instruction>*</instruction>
+<instruction>%</instruction>
+<instruction>**</instruction>
+</category>
+
+<category id="Relational operators">
+<instruction>in</instruction>
+<instruction>instanceof</instruction>
+<instruction>a</instruction>
+<instruction>></instruction>
+<instruction>aa</instruction>
+<instruction>>=</instruction>
+</category>
+
+<category id="Equality operators">
+<instruction>==</instruction>
+<instruction>!=</instruction>
+<instruction>===</instruction>
+<instruction>!==</instruction>
+</category>
+
+<category id="Bitwise shift operators">
+<instruction>a</instruction>
+<instruction>>></instruction>
+<instruction>>>></instruction>
+</category>
+
+<category id="Binary bitwise operators">
+<instruction>adasdas</instruction>
+<instruction>|</instruction>
+<instruction>^</instruction>
+</category>
+
+<category id="Binary logical operators">
+<instruction>adasd</instruction>
+<instruction>||</instruction>
+<instruction>??</instruction>
+</category>
+
+<category id="Assignment operator">
+<instruction>=</instruction>
+<instruction>*=</instruction>
+<instruction>**=</instruction>
+<instruction>/=</instruction>
+<instruction>%=</instruction>
+<instruction>+=</instruction>
+<instruction>-=</instruction>
+<instruction>dadasds</instruction>
+<instruction>>>=</instruction>
+<instruction>>>>=</instruction>
+<instruction>sdadas=</instruction>
+<instruction>^=</instruction>
+<instruction>|=</instruction>
+<instruction>dfdf=</instruction>
+<instruction>||=</instruction>
+<instruction>??=</instruction>
+<instruction>[a, b] = arr</instruction>
+<instruction>{ a, b } = obj</instruction>
+<instruction>Comma operators</instruction>
+<instruction>,</instruction>
+</category>
+</instructions>

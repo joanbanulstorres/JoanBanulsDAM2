@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body{text-align:center}
+        </style>
+    </head>
+    <body>
+        <canvas id="lienzo" width=800px height=800px></canvas>
+        <canvas id="lienzodestino" width=800px height=800px></canvas>
+        <script>
+            var anchura = 1;    // Esta variable va a almacenar la anchura del cuadrado de comparación
+            var contexto = document.getElementById("lienzo").getContext("2d");  // Creamos un lienzo en el que poder dibujar
+            var contextodestino = document.getElementById("lienzodestino").getContext("2d");  // Creamos un lienzo en el que poder dibujar
+            // Cargamos una imagen
+            var foto = new Image();
+            foto.src = "img1.jpg";
+            // Ejecuta una función con cierto retraso para darle tiempo al programa a cargar la imagen
+            setTimeout(function(){
+                const tiempoInicial = Date.now();
+                contexto.drawImage(foto, 0, 0);     // Dibujamos la imagen en el lienzo
+                var destino = contextodestino.getImageData(0, 0, 2048, 2048);
+                for(var x=0; x<800; x++){
+                    for(var y=0; y<800; y++){
+                        var centro = contexto.getImageData(x, y, 1, 1);
+                        var centror = centro[0];
+                        var centrog = centro[1];
+                        var centrob = centro[2];
+                        var subcuadrado = contexto.getImageData(x-anchura, y-anchura, anchura*2, anchura*2);    // Cogemos una sección cuadrada de la imagen
+                        var borde = false;
+                        // Comparamos el cuadrado capturado con sus adyacentes
+                        for (var i = 0; i < subcuadrado.data.length; i++){
+                            if(Math.abs(centror - subcuadrado[i]) > 5)
+                            {
+                                borde = true;
+                            }
+                        }
+                        if(borde == false){
+                            contextodestino.fillStyle = "black";
+                            contextodestino.fillRect(x, y, 1, 1);
+                        }else{
+                            contextodestino.fillStyle = "white";
+                            contextodestino.fillRect(x, y, 1, 1);
+                        }
+                    }
+                }
+                contexto.putImageData(pixeles, 0, 0);   // Ponemos de vuelta los píxeles en el lienzo
+                const tiempoFinal = Date.now();
+                console.log("El tiempo requerido para calcular este programa ha sido de "+(tiempoFinal-tiempoInicial)+" ms");
+            }, 2000);
+        </script>
+    </body>
+</html>

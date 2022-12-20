@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script>
+            var numeroDeNucleos = navigator.hardwareConcurrency;
+            console.log("El ordenador que estás usando tiene "+numeroDeNucleos+" núcleos");
+            
+            var trabajador = new Array();
+            for(var i=0; i<numeroDeNucleos; i++){
+                trabajador[i] = new Worker("tarea2.js");
+                trabajador[i].postMessage("Emmpieza a trabajar");
+                trabajador[i].onmessage = function(datos){
+                    console.log(datos.data)
+                }
+            }
+        </script>
+    </body>
+</html>

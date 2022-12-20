@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body{text-align:center}
+            #contienecanvas{width:2160px; height:2160px; position:relative; margin:0px; float:left;}
+            #contienecanvas canvas{position:absolute; top:0px; left:0px;}
+        </style>
+    </head>
+    <body>
+            <canvas id="lienzo" width=2160px height=2160px padding=0px></canvas>
+            <div id="contienecanvas">
+                <canvas id="lienzodestino" width=2160px height=2160px></canvas>
+                <canvas id="lienzobuckets" width=2160px height=2160px></canvas> 
+            </div>
+        <script>
+            var umbral = 10;    // Diferencia de color entre el píxel tomado y sus vecinos
+            var anchurabucket = 108; // Un bucket es un pequeño cuadrado de la imagen
+            var anchura = 2160;
+            var altura = 2160;
+            var x = 0;
+            var y = 0;
+            
+            var contexto = document.getElementById("lienzo").getContext("2d");  
+            var contextodestino = document.getElementById("lienzodestino").getContext("2d");  
+            var contextobuckets = document.getElementById("lienzobuckets").getContext("2d");
+            
+            // Cargamos una imagen
+            var foto = new Image();
+            foto.src = "img1.jpg";
+            
+            var trabajador = new Array();
+            
+            // Ejecuta una función con cierto retraso para darle tiempo al programa a cargar la imagen
+            setTimeout(function(){
+                const tiempoInicial = Date.now();
+                contexto.drawImage(foto, 0, 0);     // Dibujamos la imagen en el lienzo
+                
+                var numerotrabajadores = navigator.hardwareConcurrency*2;   // 4 núcleos * 2 = 8 tareas
+                
+                for(var i=0; i<numerotrabajadores; i++){    
+                    trabajador[i] = new Worker("tarea7.js");
+                    trabajador[i].onmessage = function(datos, i){
+                        //console.log(datos);
+                        contextodestino.putImageData(datos.data.resultado, datos.data.mix, datos.data.miy);
+                        x += anchurabucket;
+                        if(x>anchura){x=0; y+=anchurabucket;}
+                        if(y<altura){
+                            bucle(datos.data.miidworker, x, y);
+                        }else{  // Cuando la y sea igual a la altura del lienzo, significa que se ha recorrido toda la imagen
+                            const tiempoFinal = Date.now();
+                            console.log("El tiempo requerido para calcular este programa ha sido de "+(tiempoFinal-tiempoInicial)+" ms");
+                        }
+                    }
+                    bucle(i, x, y);
+                }
+            }, 2000);
+            
+            function bucle(i, x, y){
+                
+                contextobuckets.strokeRect(x, y, anchurabucket, anchurabucket); // Cuadrado negro vacío
+                
+                var pixeles = contexto.getImageData(x, y, anchurabucket, anchurabucket);    // Captura los píxeles correspondientes a un bucket y los mete en una variable
+                var pixelesdestino = contextodestino.getImageData(x, y, anchurabucket, anchurabucket);  // Captura toda la información de los píxeles del lienzo destino y la mete en una variable 
+                
+                json = {px:pixeles, pxdst:pixelesdestino, mix:x, miy:y, miumbral:umbral, mianchurabucket:anchurabucket, idworker:i}
+                console.log("El índice del trabajador es: " + i);
+                trabajador[i].postMessage(json); 
+            }
+        </script>
+    </body>
+</html>

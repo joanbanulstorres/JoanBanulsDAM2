@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            html, body{padding:0px; margin:0px; overflow:hidden;}
+            canvas{
+                border:1px solid black;
+                /* Para quitar el antialiasing */
+                image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+                image-rendering: -moz-crisp-edges;          /* Firefox                        */
+                image-rendering: -o-crisp-edges;            /* Opera                          */
+                image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+                image-rendering: pixelated;                 /* Universal support since 2021   */
+                image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+                -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+            }
+            #contienestats{position:absolute; top:0px; left:0px; background:black; width:64px; height:32px}
+            #stats{position:absolute; top:0px; left:0px; background:black;}   /* *NUEVO* */
+            #stats2{position:absolute; top:0px; left:0px;}   /* *NUEVO* */
+        </style>
+    </head>
+    <body>
+        <canvas id="lienzo" width=512px height=512px></canvas>
+        <div id="contienestats">
+            <canvas id="stats" width=64px height=32px></canvas>     <!-- *NUEVO* -->
+            <canvas id="stats2" width=64px height=32px></canvas>     <!-- *NUEVO* - para el texto de los fps -->
+        </div>
+        <script>
+            var contexto = document.getElementById("lienzo").getContext("2d");
+            var anchura = window.innerWidth;
+            var altura = window.innerHeight;
+            document.getElementById("lienzo").width = anchura;
+            document.getElementById("lienzo").height = altura;
+            
+            // Carga de las células vivas en el espacio definido
+            contexto.fillStyle = "rgb(255, 255, 255)";
+            contexto.fillRect(0, 0, anchura, altura);
+            var datoscanvas = contexto.getImageData(0, 0, anchura, altura);         // para escribir
+            var datoscanvastemp = contexto.getImageData(0, 0, anchura, altura);     // para leer
+            
+            var pixel = new Array();                                                // *NUEVO*
+            for(var i=0; i<anchura*altura; i++){                                    
+                if(Math.random() < 0.5){                                            // Probabilidad de que las células estén vivas o muertas
+                    // Célula viva
+                    pixel.push(1);                                                  // *NUEVO*
+                }else{
+                    // Célula muerta
+                    pixel.push(0);                                                  // *NUEVO*
+                }
+            }
+            console.log(pixel);                                                     // *NUEVO*
+            contexto.putImageData(datoscanvas, 0, 0);
+            
+            var contextostats = document.getElementById("stats").getContext("2d");      // *NUEVO*
+            var contextostats2 = document.getElementById("stats2").getContext("2d");    // *NUEVO*
+            contextostats.font = "10px Arial";                                          // *NUEVO*
+            contextostats.fillStyle = "black";                                          // *NUEVO*
+            contextostats.fillRect(0, 0, 64, 64);                                       // *NUEVO*
+            var statstiempoinicial = 0;                                                 // *NUEVO*
+            var statstiempofinal = 0;                                                   // *NUEVO*
+            
+            var temporizador = setTimeout("bucle()", 1000);
+            function bucle(){ 
+                statstiempoinicial = Date.now();    // *NUEVO*
+                
+                var pixeltemp = pixel.slice();  // Para crear una copia
+                
+                // Comparamos un píxel/célula con sus vecinos
+                for(var i=0; i<pixel.length; i++){  
+                    
+                    var numerovivas = 0;
+                    // *NUEVO*
+                    numerovivas += pixeltemp[i - anchura - 1];      // célula(píxel) de arriba a la izquierda
+                    numerovivas += pixeltemp[i - anchura];          // célula(píxel) de arriba en el centro
+                    numerovivas += pixeltemp[i - anchura + 1];      // célula(píxel) de arriba a la derecha
+                    numerovivas += pixeltemp[i - 1];                // célula(píxel) de izquierda
+                    numerovivas += pixeltemp[i + 1];                // célula(píxel) de derecha
+                    numerovivas += pixeltemp[i + anchura - 1];      // célula(píxel) de abajo a la izquierda
+                    numerovivas += pixeltemp[i + anchura];          // célula(píxel) de abajo en el centro
+                    numerovivas += pixeltemp[i + anchura + 1];      // célula(píxel) de abajo a la derecha
+                    
+                    // Algortimo del juego de la vida - *NUEVO*
+                   if(pixeltemp[i] == 0){          // Una célula muerta...  
+                        if(numerovivas == 3){   // ...con tres vecinas vivas...
+                            pixel[i] = 1;       // ...renace en la siguiente iteración...
+                        }else{
+                            pixel[i] = 0;       // ...en caso contrario sigue muerta
+                        }
+                    }else{                                              // Una célula viva...
+                        if(numerovivas == 2 || numerovivas == 3){       // ...con dos o tres vecinas vivas...
+                            pixel[i] = 1;                               // ...sigue viva en la siguiente iteración...
+                        }else{
+                            pixel[i] = 0;                               // ...en caso contrario muere
+                        }
+                    }
+                    
+                    datoscanvas.data[i*4] = 255 - pixel[i]*255;       // R
+                    datoscanvas.data[i*4+1] = 255 - pixel[i]*255;     // G
+                    datoscanvas.data[i*4+2] = 255 - pixel[i]*255;     // B
+                    datoscanvas.data[i*4+3] = 255;                  // alpha
+                }
+                
+                contexto.putImageData(datoscanvas, 0, 0);
+                
+                //*NUEVO*
+                statstiempofinal = Date.now();                                         
+                var fps = Math.round(100 / (statstiempofinal - statstiempoinicial));   
+                //contextostats.fillStyle = "black";                                      
+                //contextostats.fillRect(31, 1, 1, 30);                                 
+                if(fps >= 20){contextostats.fillStyle = "green";}
+                if(fps < 20){
+                    contextostats.fillStyle = "yellow";
+                    if(fps < 10){contextostats.fillStyle = "red";}        
+                }
+                contextostats.fillRect(62, 30, 1, 0-fps/2);                               
+                var datos = contextostats.getImageData(2, 1, 64, 30);               
+                contextostats.putImageData(datos, 1, 1);
+                contextostats2.clearRect(0, 0, 64, 32);
+                contextostats2.fillStyle = "white";
+                contextostats2.fillText(fps+" fps", 1, 10)
+                //console.log(fps);                                                    
+                
+                clearTimeout(temporizador);
+                temporizador = setTimeout("bucle()", 0);
+            }
+        </script>
+    </body>
+</html>

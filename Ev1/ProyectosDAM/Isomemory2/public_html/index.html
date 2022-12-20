@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Isomemory</title>
+        <meta charset="UTF-8">
+        <script src="lib/jquery-3.6.1.min.js"></script>
+        <!-- Importaciones de otros archivos -->
+        <link rel="stylesheet" href="estilo/estilo.css">
+    </head>
+    <body>
+        <div id="contenedor" class="difuminado">
+            <canvas id="cielo"></canvas>
+            <canvas id="tablero" class="ventana"></canvas>
+            <canvas id="objetos" class="ventana"></canvas>
+        </div>
+        <div id="pantallainicial" class="ventana">
+            <h1>ISOMEMORY</h1>
+            <p>Entrena tu memoria visual</p>
+            <h2 id="botonjugar">JUGAR</h2>
+            <h2 id="botoninstrucciones">INSTRUCCIONES</h2>
+        </div>
+        <div id="pantallamedio" class="ventana">
+            <h1>ISOMEMORY</h1>
+            <p>Entrena tu memoria visual</p>
+            <h2 id="botoncontinuar">CONTINUAR</h2>
+            <h2 id="botonvolveraempezar">VOLVER A EMPEZAR</h2>
+        </div>
+        <div id="pantallafinal" class="ventana">
+            <h1>HAS PERDIDO</h1>
+            <h2 id="botonvolverajugar">VOLVER A JUGAR</h2>
+            <h2 id="botoninstrucciones2">INSTRUCCIONES</h2>
+        </div>
+        <div id="pantallavictoria" class="ventana">
+            <h1>¡HAS GANADO!</h1>
+            <h2 id="botonvolverajugar2">VOLVER A JUGAR</h2>
+        </div>
+        <div id="pantallanivel" class="ventana">
+            <h3>NIVEL </h3>
+            <h3 id="dimenivel"></h3>
+            <h4 id="dimesubnivel"></h4>
+        </div>
+        <div id="pantallainstrucciones" class="ventana">
+            <h5>1) Memoriza la posición de los dados</h5>
+            <h5>2) Presiona la tecla 'R'</h5>
+            <h5>3) Los dados aparecerán en nuevas posiciones, posiciónalos como estaban anteriormente</h5>
+            <h5>3.1) Usa las teclas 'W', 'A', 'S' y 'D' para moverte</h5>
+            <h5>3.2) Usa la tecla 'Espacio' para empujar los dados que estén a tu lado</h5>
+            <h5>4) Presiona de nuevo tecla 'R'</h5>
+            <h5>5) Si la posición de todos los dados es correcta, habrás superado el nivel con éxito</h5><br>
+            <h5 id="botonvolver">VOLVER</h5>
+        </div>
+        <script src="js/Dado.js"></script>
+        <script src="js/condiciones_iniciales.js"></script>
+        <script src="js/ajuste_ventana.js"></script>
+        <script src="js/conversion_isometrica.js"></script>
+        <script src="js/subnivel.js"></script>
+        <script src="js/nivel.js"></script>
+        <script src="js/empujar_dado.js"></script>
+        <script src="js/controles.js"></script>
+        <script src="js/botones.js"></script>
+        <script src="js/dibujar_personaje.js"></script>
+        <script src="js/dibujar_dados.js"></script>
+        <script src="js/reiniciar.js"></script>
+        <script>        
+            function inicio(){
+                temporizador = setTimeout("bucle()", 50);
+            }
+            function bucle(){
+                clearTimeout("temporizador");
+                objetos.clearRect(0, 0, anchura_objetos, altura_objetos);
+                
+                dibujar_personaje();
+                dibujar_dados();
+                
+                temporizador = setTimeout("bucle()", 30);
+            }
+        </script>
+    </body>
+</html>

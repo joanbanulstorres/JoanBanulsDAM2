@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body{text-align:center}
+        </style>
+    </head>
+    <body>
+        <canvas id="lienzo" width=2160px height=2160px></canvas>
+        <script>
+            var contexto = document.getElementById("lienzo").getContext("2d");  // Creamos un lienzo en el que poder dibujar
+            // Cargamos una imagen
+            var foto = new Image();
+            foto.src = "img1.jpg";
+            // Ejecuta una función con cierto retraso para darle tiempo al programa a cargar la imagen
+            setTimeout(function(){
+                const tiempoInicial = Date.now();
+                contexto.drawImage(foto, 0, 0);     // Dibujamos la imagen en el lienzo
+                var pixeles = contexto.getImageData(0, 0, 2160, 2160);    // Atrapamos la totalidad de la imagen
+                // Recorremos la imagen cada cuatro bloques porque cuatro piezas de contenido representan un píxel
+                for(var i=0; i<pixeles.data.length; i+=4){
+                    pixeles.data[i] = 255-pixeles.data[i];          // Invertimos el canal rojo de la imagen
+                    pixeles.data[i+1] = 255-pixeles.data[i+1];      // Invertimos el canal verde de la imagen
+                    pixeles.data[i+2] = 255-pixeles.data[i+2];      // Invertimos el canal azul de la imagen
+                    pixeles.data[i+3] = 255;                        // Transpariencia
+                }
+                contexto.putImageData(pixeles, 0, 0);   // Ponemos de vuelta los píxeles en el lienzo
+                const tiempoFinal = Date.now();
+                console.log("El tiempo requerido para calcular este programa ha sido de "+(tiempoFinal-tiempoInicial)+" ms");
+            }, 2000)
+        </script>
+    </body>
+</html>

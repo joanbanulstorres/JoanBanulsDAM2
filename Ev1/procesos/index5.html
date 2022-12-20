@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script>
+            
+            var edad = 22;  // Esta variable no es visible dentro de la tarea
+            var nombre = "Joan";
+            var json = {edad:22, nombre:"Joan"};
+            
+            var numeroDeNucleos = navigator.hardwareConcurrency;
+            console.log("El ordenador que estás usando tiene "+numeroDeNucleos+" núcleos");
+            
+            var trabajador = new Array();
+            for(var i=0; i<numeroDeNucleos; i++){
+                trabajador[i] = new Worker("tarea5.js");
+                trabajador[i].postMessage(json);    // Le pasamos el json al worker
+                trabajador[i].onmessage = function(datos){
+                    console.log(datos.data);
+                }
+            }
+        </script>
+    </body>
+</html>

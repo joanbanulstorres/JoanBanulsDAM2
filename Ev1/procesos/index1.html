@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script>
+            const tiempoInicial = Date.now();    //The static Date.now() method returns the number of milliseconds elapsed since January 1, 1970
+            //Cálculo 1
+            console.log("Vamos con el cálculo 1");
+            var numero = 0.000004423423;
+            var iteraciones = 100000000;
+            for(var i =0; i<iteraciones; i++){
+                numero = numero*1.00000000005435;
+            }
+            //Cálculo 2
+            console.log("Vamos con el cálculo 2");
+            var numero = 0.000004423423;
+            var iteraciones = 100000000;
+            for(var i =0; i<iteraciones; i++){
+                numero = numero*1.00000000005435;
+            }
+            //Cálculo 3
+            console.log("Vamos con el cálculo 3");
+            var numero = 0.000004423423;
+            var iteraciones = 100000000;
+            for(var i =0; i<iteraciones; i++){
+                numero = numero*1.00000000005435;
+            }
+            //Cálculo 4
+            console.log("Vamos con el cálculo 4");
+            var numero = 0.000004423423;
+            var iteraciones = 100000000;
+            for(var i =0; i<iteraciones; i++){
+                numero = numero*1.00000000005435;
+            }
+            const tiempoFinal = Date.now();
+            console.log("El número calculado es "+numero);
+            console.log("El tiempo requerido para calcular este programa ha sido de "+(tiempoFinal-tiempoInicial)+" ms");
+        </script>
+    </body>
+</html>

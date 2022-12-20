@@ -1,0 +1,65 @@
+#tabs{height:100%;}
+#tabs .espacio{height:100%;}
+table td, table td * {vertical-align: top;} /* Para que el contenido de las celdas se alinee arriba */
+.nodo{
+    width:150px;
+    min-height:50px;
+    border:2px solid grey;
+    border-radius:5px;
+    padding:10px;
+    position:absolute;
+    border-top:5px solid red;
+    font-size:10px;
+    z-index:1000;
+}
+#espacio{
+    position:relative;
+}
+p{padding:0px; margin:0px;}
+.nodo .entradas{
+    float:left;
+    width:50%;
+    text-align:left;
+    position:relative;
+    left:-23px;
+}
+.nodo .salidas{
+    float:right;
+    width:50%;
+    text-align:right;
+    position:relative;
+    right:-23px;
+}     
+.nodo .parametro .conector{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    border:2px solid red;
+    border-radius:10px; /* borde circular */
+    background:black;
+    margin-left:5px;
+    margin-right:5px;
+}
+.nodo .ejecucion .conector{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    border:2px solid red;
+    border-radius:0px;  /* borde cuadrado */
+    background:black;
+    margin-left:5px;
+    margin-right:5px;
+}
+.select2{
+    width:100% !important;
+}
+connection{
+    border:3px solid black;
+    border-radius:20px;
+    z-index:0;
+}
+
+/* *NUEVO* */
+.selected{
+    box-shadow:0px 0px 30px yellow;
+}

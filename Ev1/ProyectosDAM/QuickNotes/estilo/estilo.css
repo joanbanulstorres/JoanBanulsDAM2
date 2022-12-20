@@ -1,0 +1,93 @@
+@font-face{
+    font-family:gravity;
+    src:url(gravity/Gravity-Light.otf);
+}
+@font-face{
+    font-family:gravity-bold;
+    src:url(gravity/Gravity-Bold.otf);
+}
+body{
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+    font-family:gravity-bold, sans-serif;
+    overflow-y:auto;                                                            /* Barra de desplazamiento */
+    background:rgb(230, 230, 230);
+}
+
+/*///////// ▽ HEADER ▽  /////////*/
+header{
+    width:100%;
+    height:7%;
+    text-align:center;
+    
+}
+h1{
+    margin-top:5px;
+    margin-bottom:0px;
+    font-size:32px;
+}
+h2{
+    margin-top:0px;
+    font-size:18px;
+    margin-bottom:12px;
+}
+/*///////// △ HEADER △  /////////*/
+/*///////// ▽ NAV ▽  /////////*/
+nav{
+    width:25%;
+    height:130%;
+    margin:0px;
+    float:left;                                                                 /* Para que el main se coloque a la derecha */
+    background:rgb(229, 231, 233);
+}
+#miscursos{margin-top:10px; margin-bottom:0px; font-family:gravity-bold; font-size:24px;text-align:center;}
+h3{font-size:20px; font-family:gravity-bold; margin-left:15px; margin-bottom:10px;}
+h5{font-size:16px; display:inline; margin-left:3px;}
+.nuevaasig{margin-top:15px; margin-left:10px;}
+#nuevaasignaturatxt{display:inline}
+/*///////// △ NAV △  /////////*/
+/*/////////  ▽ MAIN ▽  /////////*/
+main{
+    width:114%;
+    height:130%;
+}
+#barraherramientas{background:rgb(229, 231, 233);}
+#fondopagina{
+    width:100%;
+    height:100%;
+    background:rgb(202, 207, 210);
+                                                              
+}
+#pagina{
+    background:white;
+    width:500px;
+    height:707px;
+    margin:auto;
+    margin-top:5%;
+    bottom:50px;
+    padding:20px;
+    position:relative;
+    box-shadow:0px 10px 20px black;
+    outline:none;
+    zoom:130%;
+    
+}
+/*/////////  △ MAIN △  /////////*/
+
+footer{
+    width:100%;
+    height:3%;
+    text-align:center;
+    position:relative;
+}
+h5{
+    margin-top:7px;
+}
+
+.icon{
+    height:22px;
+}
+nav, main, footer{border:1px solid black;}
