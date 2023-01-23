@@ -1,13 +1,26 @@
 <!doctype html>
 <hml>
     <head>
-
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+        <script src="js/codigo.js"></script>
+        <link rel ="Stylesheet" href="css/estilo.css">
     </head>
     <body>
         <div id = "contenedor">
-            <select>
-                <option>Selecciona una tabla</option>
-            </select>
+            <div id="selecciontabla">
+                <p>Selecciona la tabla con la que quieres trabajar</p>
+                <select id="seleccionatabla">
+                    <option>Selecciona una tabla</option>
+                </select>
+            </div>    
+            <div id="seleccioncampos">
+                <p>Selecciona los campos que quieres obtener</p>
+                <div id="seleccionacampos"></div>
+            </div>
+
+            <div id="sql"></div>
+            <div id="resultadostabla"></div>
+            <div id="resultadosgrafica"></div>
         </div>
     </body>
 </hml>

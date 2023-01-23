@@ -1,0 +1,32 @@
+var peticion = "SELECT ";
+var columnas = " * ";
+var desde = " FROM ";
+var tabla = "";
+$(document).ready(function(){
+    $("#seleccionatabla").load("php/cargatablas.php");
+    resultadostabla();
+    $("#seleccionatabla").change(function(){
+        tabla = $(this).val();
+        resultadostabla();
+        $("#seleccionacampos").load("php/cargacampos.php?tabla=" + tabla);
+    });
+    $("#seleccionacampos").change(function(){
+        seleccionado = [];
+        $('input[name="seleccionacampos"]').each(function(){
+            if($(this).is(":checked")){
+                seleccionado.push($(this).val());
+            }
+        })
+        columnas = "";
+        for(var i=0; i<seleccionado.length; i++){
+            columnas += seleccionado[i] + ",";
+        }
+        columnas = columnas.slice(0, -1);   // Para quitar la última coma
+        resultadostabla();
+    })
+});
+
+function resultadostabla(){
+    $("#sql").text(peticion + columnas + desde + tabla);
+    $("#resultadostabla").load("php/resultadostabla.php?sql=" + encodeURI(peticion + columnas + desde + tabla));
+}

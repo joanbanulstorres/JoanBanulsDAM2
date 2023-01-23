@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset = "utf-8">
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+        <script src="js/codigo.js"></script>
+        <link rel ="Stylesheet" href="css/estilo.css">
+    </head>
+    <body>
+        <div id = "contenedor">
+            <div id="selecciontabla">
+                <h1>1.- Selección de la tabla</h1>
+                <p>Selecciona la tabla sobre la que quieres trabajar</p>
+                <select id="seleccionatabla">
+                    <option>Selecciona una tabla</option>
+                </select>
+            </div>    
+            <div id="seleccioncampos">
+                <h1>2.- Selección de los campos a ver</h1>
+                <p>Selecciona los nombres de columna que quieres que aparezcan</p>
+                <div id="seleccionacampos">
+                </div>
+            </div>
+            <div id="seleccionalias">                                               <!-- *NUEVO* -->
+                <h1>3.- Selección de los alias por campo</h1>
+                <p>Selecciona los alias para cada campo (opcional)</p>
+                <table id="seleccionaalias" colpadding="0" colspacing="0" cellpading="0" cellspacing="0" width="100%"></table>
+            </div>
+            <div id="seleccioncondiciones">                                         <!-- *NUEVO* -->
+                <h1>4.- Selección de las condiciones</h1>
+                <p>Introduce condiciones para los campos seleccionados</p>
+                <table id="seleccionacondiciones" colpadding="0" colspacing="0" cellpading="0" cellspacing="0" width="100%"></table>
+            </div>
+            <div id="seleccionlimite">                                              <!-- *NUEVO* -->
+                <h1>5.- Selección del límite</h1>
+                <p>Selecciona el límite para la cantidad de registros</p>
+                <div id="seleccionalimite">
+                    <input type="number" id="limite">
+                </div>
+            </div>
+            <div id="sql"></div>
+            <div id="resultadostabla"></div>
+            <div id="resultadosgrafica"></div>
+        </div>
+    </body>
+</html>
