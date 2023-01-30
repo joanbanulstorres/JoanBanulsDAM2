@@ -1,0 +1,74 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <script src="build/three.js"></script>
+        <script src="threejs_import/GLTFLoader.js"></script>
+        
+        <script>
+            
+            // Creación de la ESCENA
+            const miescena = new THREE.Scene();
+            
+            // Creación de la CÁMARA
+            const micamara = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            
+            // Creación del REPRESENTADOR y sus parámetros
+            const representador = new THREE.WebGLRenderer();                    // Elegimos un representador(espacio 2D donde se muestran los distintos elementos), pero existen otros
+            representador.setSize(window.innerWidth, window.innerHeight);
+            
+            // Creación de las SOMBRAS
+            representador.shadowMap.enabled = true;
+            representador.shadowMap.type = THREE.PCFSoftShadowMap;
+
+            // Añande un canvas al body de manera dinámica
+            document.body.appendChild(representador.domElement);                // Crea el canvas de un entorno 3D vacío
+
+            // CUBO
+            const geometria = new THREE.BoxGeometry(1, 1, 1);
+            const material = new THREE.MeshPhongMaterial({color:0xff0000});
+            const cubo = new THREE.Mesh(geometria, material);
+            cubo.castShadow = true;
+            miescena.add(cubo);
+
+            // SUELO
+            const geometria2 = new THREE.BoxGeometry(10, 0.1, 10);
+            const material2 = new THREE.MeshPhongMaterial({color:0x00ff00});
+            const suelo = new THREE.Mesh(geometria2, material2);
+            suelo.receiveShadow = true;
+            miescena.add(suelo);
+            suelo.position.y = -1;
+
+            // FOCO sacado de una plantilla de la página de Threejs
+            const foco = new THREE.SpotLight(0xffffff);
+            foco.position.set(0, 10, 0);
+            foco.angle = 0.2;                                                   // La luz es circular
+            foco.penumbra = 0.5;                                                // Efecto de luz difuminada
+            foco.castShadow = true;
+
+            foco.shadow.mapSize.width = 1024;
+            foco.shadow.mapSize.height = 1024;
+
+            foco.shadow.camera.near = 5;
+            foco.shadow.camera.far = 4000;
+            foco.shadow.camera.fov = 30;
+            
+            miescena.add(foco);
+
+            // Mueve la cámara un poco hacia atrás
+            micamara.position.z = 5;                                             // Para alejar la cámara
+            
+            // Creación de la ANIMACIÓN
+            function animate(){
+                requestAnimationFrame(animate);
+                cubo.rotation.x += 0.01;
+                cubo.rotation.y += 0.01;
+                representador.render(miescena, micamara);
+            }
+            
+            animate();
+
+        </script>
+    </body>
+</html>
