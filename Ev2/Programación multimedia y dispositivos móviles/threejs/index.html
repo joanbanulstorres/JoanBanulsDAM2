@@ -3,16 +3,69 @@
         
     </head>
     <body>
-        <script src="build/three.js"></script>
-        <script src="threejs_import/GLTFLoader.js"></script>
+        <!-- jQuery, Threejs, GLTFLoader y OrbitControls -->
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+        <script src="https://unpkg.com/three@0.126.0/examples/js/controls/OrbitControls.js"></script>
         
         <script>
             
+            // DECLARACIÓN DE LAS VARIABLES INICIALES
+            var numeropersonajes = 10;
+            var personajes = new Array();
+            // var mixer;
+            // clock = new THREE.Clock();
+            var direccion = '';
+            
+            $(document).ready(function(){
+                $(document).keydown(function(event){
+                    if(event.which == 87){direccion = 'w'}
+                    if(event.which == 83){direccion = 's'}
+                    if(event.which == 65){direccion = 'a'}
+                    if(event.which == 68){direccion = 'd'}
+                });
+                $(document).keyup(function(event){
+                    if(event.which == 87){direccion = ''}
+                    if(event.which == 83){direccion = ''}
+                    if(event.which == 65){direccion = ''}
+                    if(event.which == 68){direccion = ''}
+                });
+            });
+            
+            class Personaje{
+                constructor(){
+                    this.x = (Math.random()-0.5)*10;
+                    this.y = 0;
+                    this.z = (Math.random()-0.5)*10;
+                    this.malla = new THREE.Object3D();
+                    this.angulo = Math.random()*Math.PI*2;
+                    this.cr = Math.round(Math.random());        // Canal rojo de la camiseta - Los valores van de 0 a 1, no de 0 a 256
+                    this.cg = Math.round(Math.random());        // Canal verde de la camiseta
+                    this.cb = Math.round(Math.random());        // Canal azul de la camiseta
+                    this.pr = Math.round(Math.random());        // Canal rojo del pantalón - Los valores van de 0 a 1, no de 0 a 256
+                    this.pg = Math.round(Math.random());        // Canal verde del pantalón
+                    this.pb = Math.round(Math.random());        // Canal azul del pantalón
+                    this.factor = Math.round(Math.random());
+                    this.sr = Math.round(Math.random());        // Canal rojo de la piel
+                    this.sg = this.sr * this.factor;            // Canal verde de la piel
+                    this.sb = this.sr * this.factor/2;          // Canal azul de la piel
+
+                }
+            }
+
+            for(var i=0; i<numeropersonajes; i++){
+                personajes[i] = new Personaje();
+            }
+
             // Creación de la ESCENA
             const miescena = new THREE.Scene();
             
             // Creación de la CÁMARA
-            const micamara = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            const micamara = new THREE.PerspectiveCamera(25, window.innerWidth/window.innerHeight, 0.1, 1000);
+            micamara.position.z = 25;
+            micamara.position.y = 25;
+            micamara.rotation.x = -Math.PI/4;                                   // 45º hacia abajo
             
             // Creación del REPRESENTADOR y sus parámetros
             const representador = new THREE.WebGLRenderer();                    // Elegimos un representador(espacio 2D donde se muestran los distintos elementos), pero existen otros
@@ -25,30 +78,105 @@
             // Añande un canvas al body de manera dinámica
             document.body.appendChild(representador.domElement);                // Crea el canvas de un entorno 3D vacío
 
+            // CONTROLES ORBITALES
+            const controles = new THREE.OrbitControls(micamara, representador.domElement);
+
+            //////////////////////  ▼ GEOMETRÍAS ▼  ////////////////////
             // CUBO
             const geometria = new THREE.BoxGeometry(1, 1, 1);
             const material = new THREE.MeshPhongMaterial({color:0xff0000});
             const cubo = new THREE.Mesh(geometria, material);
             cubo.castShadow = true;
+            cubo.position.z = -1;
+            cubo.position.y = 1;
             miescena.add(cubo);
 
             // SUELO
-            const geometria2 = new THREE.BoxGeometry(10, 0.1, 10);
-            const material2 = new THREE.MeshPhongMaterial({color:0x00ff00});
+            const textura = new THREE.TextureLoader().load('img/checker.jpg');  // Carga de una textura para el suelo
+            // La textura se repite
+            textura.wrapS = textura.wrapT = THREE.RepeatWrapping;
+            textura.repeat.set(8, 8);
+            
+            const geometria2 = new THREE.BoxGeometry(100, 0.1, 100);
+            const material2 = new THREE.MeshPhongMaterial({map: textura});
             const suelo = new THREE.Mesh(geometria2, material2);
             suelo.receiveShadow = true;
+            suelo.position.y = -0.05;
             miescena.add(suelo);
-            suelo.position.y = -1;
 
+            // GEOMETRÍA PERSONALIZADA
+            var cargador = new Array();
+            // var mixer = new Array();
+            for(var i=0; i<numeropersonajes; i++){
+                cargador[i] = new THREE.GLTFLoader();
+            }
+           //////////////////// ▲ GEOMETRÍAS ▲ ////////////////////
+
+            /////////// ▼ Para darle tiempo al bucle para cargar los personajes/cargadores ▼ //////////
+            var iteracionescargador = 0;
+            var temporizador = setTimeout("buclecarga()", 500);
+
+            function buclecarga(){
+                cargador[iteracionescargador].load('avatar.gltf', function(gltf){
+                    gltf.scene.traverse(function(node){                     // 'traverse': método que recorre uno a uno todos los elementos de la escena
+                        if(node.isMesh){node.castShadow = true;}            // Si el nodo es una malla, activa la proyección de sombras
+                    });
+                    
+                    // ANIMACIONES DE PERSONAJE
+                    /* mixer[iteracionescargador] = new THREE.AnimationMixer(gltf.scene)
+                    gltf.animations.forEach((clip) => {
+                        mixer[iteracionescargador].clipAction(clip).play();
+                    }); */
+
+                    personajes[iteracionescargador].malla = gltf.scene;
+                    console.log(gltf.scene);
+
+                    // Cada personaje tiene una posición y un ángulo de dirección aleatorio
+                    personajes[iteracionescargador].malla.position.x = personajes[iteracionescargador].x;
+                    personajes[iteracionescargador].malla.position.z = personajes[iteracionescargador].z;
+                    personajes[iteracionescargador].malla.rotation.y = personajes[iteracionescargador].angulo;
+                    // Cada personaje tiene un color de camista, pantalón y piel distinto
+                    gltf.scene.traverse(function(node){
+                        if(node.isMesh){
+                            if(node.material.name == "Camiseta"){
+                                node.material.color.r = personajes[iteracionescargador].cr;
+                                node.material.color.g = personajes[iteracionescargador].cg;
+                                node.material.color.b = personajes[iteracionescargador].cb;
+                            }
+                            if(node.material.name == "Pantalon"){
+                                node.material.color.r = personajes[iteracionescargador].pr;
+                                node.material.color.g = personajes[iteracionescargador].pg;
+                                node.material.color.b = personajes[iteracionescargador].pb;
+                            }
+                            if(node.material.name == "Piel"){
+                                node.material.color.r = personajes[iteracionescargador].sr;
+                                node.material.color.g = personajes[iteracionescargador].sg;
+                                node.material.color.b = personajes[iteracionescargador].sb;
+                            }
+                        }
+                    });
+
+                    miescena.add(personajes[iteracionescargador].malla);
+                });
+                console.log("Cargando...");
+                iteracionescargador++;
+                clearTimeout(temporizador);
+                if(iteracionescargador < numeropersonajes-1){
+                    temporizador = setTimeout("buclecarga()", 500);
+                }
+            }
+            ////////// ▲ Para darle tiempo al bucle para cargar los personajes/cargadores ▲ //////////
+            
             // FOCO sacado de una plantilla de la página de Threejs
             const foco = new THREE.SpotLight(0xffffff);
-            foco.position.set(0, 10, 0);
+            foco.position.set(0, 130, 0);
             foco.angle = 0.2;                                                   // La luz es circular
             foco.penumbra = 0.5;                                                // Efecto de luz difuminada
             foco.castShadow = true;
 
-            foco.shadow.mapSize.width = 1024;
-            foco.shadow.mapSize.height = 1024;
+            // Calidad de las sombras
+            foco.shadow.mapSize.width = 4096;
+            foco.shadow.mapSize.height = 4096;
 
             foco.shadow.camera.near = 5;
             foco.shadow.camera.far = 4000;
@@ -56,18 +184,50 @@
             
             miescena.add(foco);
 
-            // Mueve la cámara un poco hacia atrás
-            micamara.position.z = 5;                                             // Para alejar la cámara
-            
+            // LUZ AMBIENTAL
+            const luzambiental = new THREE.AmbientLight(0x404040); // soft white light
+            miescena.add(luzambiental);
+
             // Creación de la ANIMACIÓN
             function animate(){
                 requestAnimationFrame(animate);
+                
+                for(var i=0; i<numeropersonajes; i++){
+                    // Se actualiza la posición teórica
+                    personajes[i].x += Math.cos(personajes[i].angulo);
+                    personajes[i].z += Math.sin(personajes[i].angulo);
+                    personajes[i].angulo += (Math.random()-0.5)*0.1;
+                    // Se actualiza la posición real
+                    personajes[i].malla.position.x = personajes[i].x * 0.01;
+                    personajes[i].malla.position.z = personajes[i].z * 0.01;
+                    personajes[i].malla.rotation.y = personajes[i].angulo;
+                    // Para que los personajes no se salgan de un límite
+                    if(
+                        personajes[i].x < -500 ||
+                        personajes[i].x > 500 ||
+                        personajes[i].z < -500 ||
+                        personajes[i].z > 500
+                    ){personajes[i].angulo += Math.PI}
+                }
+
+                /* for(var i=0; i<numeropersonajes; i++){
+                    var delta = clock.getDelta();
+                    mixer[i].update(delta);
+                } */
+
+                // CONTROLES DEL CUBO
+                if(direccion == 'w'){cubo.position.z -= 0.1; micamara.position.z -= 0.1}
+                if(direccion == 's'){cubo.position.z += 0.1; micamara.position.z += 0.1}
+                if(direccion == 'a'){cubo.position.x -= 0.1; micamara.position.x -= 0.1}
+                if(direccion == 'd'){cubo.position.x += 0.1; micamara.position.x += 0.1}
+
                 cubo.rotation.x += 0.01;
                 cubo.rotation.y += 0.01;
+
                 representador.render(miescena, micamara);
             }
             
-            animate();
+            setTimeout("animate()", 100);
 
         </script>
     </body>

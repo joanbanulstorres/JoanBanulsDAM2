@@ -1,0 +1,167 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <!-- jQuery, Threejs, GLTFLoader y OrbitControls -->
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+        <script src="https://unpkg.com/three@0.126.0/examples/js/controls/OrbitControls.js"></script>
+        
+        <!-- OBJExporter - *NUEVO* -->
+        <script src="https://unpkg.com/three@0.126.0/examples/js/exporters/OBJExporter.js"></script>
+        
+        <canvas id="fondo" width="128px" height="128px"></canvas>               <!-- *NUEVO* -->
+
+        <script>
+            
+            // DECLARACIÓN DE LAS VARIABLES INICIALES
+
+            // Creación de la ESCENA
+            const miescena = new THREE.Scene();
+            
+            // Creación de la CÁMARA
+            const micamara = new THREE.PerspectiveCamera(25, window.innerWidth/window.innerHeight, 0.1, 1000);
+            micamara.position.z = 25;
+            micamara.position.y = 25;
+            micamara.rotation.x = -Math.PI/4;                                   // 45º hacia abajo
+
+            // RENDERIZADOR
+            const representador = new THREE.WebGLRenderer();                    // Elegimos un representador(espacio 2D donde se muestran los distintos elementos), pero existen otros
+            
+            // CUBO
+            const geometria = new THREE.BoxGeometry(1, 1, 1);
+            const material = new THREE.MeshPhongMaterial({color:0xff0000});
+            const cubo = new THREE.Mesh(geometria, material);
+            
+            const textura = new THREE.TextureLoader().load('checker.jpg');      // Carga de una textura para el suelo
+
+            const geometria2 = new THREE.BoxGeometry(100, 0.1, 100);
+            const material2 = new THREE.MeshPhongMaterial({map: textura});
+            const suelo = new THREE.Mesh(geometria2, material2);
+            
+            const foco = new THREE.SpotLight(0xffffff);
+            
+            ///////////////////////////////////////////////////////////////////// *NUEVO*
+            const link = document.createElement('a');
+            link.style.display = 'none';
+            document.body.appendChild(link);
+
+            var contexto = document.getElementById("fondo").getContext("2d");   // *NUEVO*
+            var fondo = new Image();                                            // *NUEVO*
+            fondo.src = "imagen.png";                                           // *NUEVO*
+            fondo.onload = function(){                                          // *NUEVO*
+                contexto.drawImage(fondo, 0, 0);
+                var datos = contexto.getImageData(0, 0, 128, 128);
+                var migeometria = new Array();
+                var mimaterial = new Array();
+                var micubo = new Array();
+                var cuentacubos = 0;
+                for(var i=0; i<datos.data.length; i+=4){
+                    if(datos.data[i] == 0){
+                        // CUBO
+                        migeometria[cuentacubos] = new THREE.BoxGeometry(1, 10, 1);
+                        mimaterial[cuentacubos] = new THREE.MeshPhongMaterial({color:0xff0000});
+                        micubo[cuentacubos] = new THREE.Mesh(migeometria[cuentacubos], mimaterial[cuentacubos]);
+                        micubo[cuentacubos].position.x = (Math.floor(i % (4 * 128) / 4)) -64;
+                        micubo[cuentacubos].position.z = (Math.floor(i / (4 * 128))) - 64;
+                        miescena.add(micubo[cuentacubos]);
+                        cuentacubos++;
+                    }
+                }
+                dibuja();
+            }
+
+            
+            function dibuja(){
+                  
+                // Parámetros del RENDERIZADOR
+                representador.setSize(window.innerWidth, window.innerHeight);
+                
+                // Creación de las SOMBRAS
+                representador.shadowMap.enabled = true;
+                representador.shadowMap.type = THREE.PCFSoftShadowMap;
+
+                // Añande un canvas al body de manera dinámica
+                document.body.appendChild(representador.domElement);                // Crea el canvas de un entorno 3D vacío
+
+                // CONTROLES ORBITALES
+                const controles = new THREE.OrbitControls(micamara, representador.domElement);
+
+                //////////////////////  ▼ GEOMETRÍAS ▼  ////////////////////
+                
+                cubo.castShadow = true;
+                cubo.position.z = -1;
+                cubo.position.y = 1;
+                miescena.add(cubo);
+
+                // SUELO
+                
+                // La textura se repite
+                textura.wrapS = textura.wrapT = THREE.RepeatWrapping;
+                textura.repeat.set(8, 8);
+                
+                suelo.receiveShadow = true;
+                suelo.position.y = -0.05;
+                miescena.add(suelo);
+
+                // GEOMETRÍA PERSONALIZADA
+                var cargador = new Array();
+                // var mixer = new Array();
+                
+                //////////////////// ▲ GEOMETRÍAS ▲ ////////////////////
+
+                // FOCO sacado de una plantilla de la página de Threejs
+                
+                foco.position.set(0, 130, 0);
+                foco.angle = 0.2;                                                   // La luz es circular
+                foco.penumbra = 0.5;                                                // Efecto de luz difuminada
+                foco.castShadow = true;
+
+                // Calidad de las sombras
+                foco.shadow.mapSize.width = 4096;
+                foco.shadow.mapSize.height = 4096;
+
+                foco.shadow.camera.near = 5;
+                foco.shadow.camera.far = 4000;
+                foco.shadow.camera.fov = 30;
+                
+                miescena.add(foco);
+
+                // LUZ AMBIENTAL
+                const luzambiental = new THREE.AmbientLight(0x404040); // soft white light
+                miescena.add(luzambiental);
+
+                // Instantiate an exporter ////////////////////////////////////////// *NUEVO*
+                var exporter = new THREE.OBJExporter();
+                // Parse the input and generate the OBJ output
+                const result = exporter.parse(miescena);
+                saveString(result, 'objtect.obj');
+
+                setTimeout("animate()", 100);
+            }
+
+            // Creación de la ANIMACIÓN
+            function animate(){
+                    requestAnimationFrame(animate);
+
+                    cubo.rotation.x += 0.01;
+                    cubo.rotation.y += 0.01;
+
+                    representador.render(miescena, micamara);
+            }
+
+            function saveString(text, filename){
+                save(new Blob([text], {type: 'text/plain'}), filename);
+            }
+            
+            function save(blob, filename){
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
+            }
+
+        </script>
+    </body>
+</html>
