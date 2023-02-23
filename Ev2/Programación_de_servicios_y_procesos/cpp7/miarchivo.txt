@@ -1,3 +1,0 @@
-Hola archivo
-Esta es mi primera linea
-Esta es mi segunda linea
