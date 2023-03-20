@@ -1,0 +1,94 @@
+Contenido del directorio Carpeta1:
+
+Nombre:	doc1.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\doc1.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:44:16.808210
+Modificado:	2023-03-20 09:44:16.808210
+
+Nombre:	doc2.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\doc2.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:44:28.368915
+Modificado:	2023-03-20 09:44:16.808210
+
+Nombre:	doc3.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\doc3.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:44:43.404867
+Modificado:	2023-03-20 09:44:16.808210
+
+Nombre:	imagen.jpg
+Ruta:	C:\Users\joan\Desktop\Carpeta1\imagen.jpg
+Tamaño:	5661133 bytes
+Creado:	2023-03-20 09:47:39.389687
+Modificado:	2023-03-20 09:47:57.843509
+
+Nombre:	lectordirectorios.py
+Ruta:	C:\Users\joan\Desktop\Carpeta1\lectordirectorios.py
+Tamaño:	3183 bytes
+Creado:	2023-03-20 09:35:48.039414
+Modificado:	2023-03-20 15:59:03.183788
+
+Nombre:	resultado.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\resultado.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 15:44:36.553309
+Modificado:	2023-03-20 15:59:08.395013
+
+
+Contenido del subdirectorio Subcarpeta1
+
+Nombre:	doc1-1.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta1\doc1-1.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:44:55.179140
+Modificado:	2023-03-20 09:44:16.808210
+
+Nombre:	doc1-2.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta1\doc1-2.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:45:07.297119
+Modificado:	2023-03-20 09:44:16.808210
+
+
+Contenido del subdirectorio Subcarpeta1-1
+
+
+Contenido del subdirectorio Subcarpeta1-1-1
+
+
+Contenido del subdirectorio Subcarpeta1-1-2
+
+
+Contenido del subdirectorio Subcarpeta1-2
+
+
+Contenido del subdirectorio Subcarpeta2
+
+Nombre:	doc2-1.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta2\doc2-1.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:45:26.303624
+Modificado:	2023-03-20 09:44:16.808210
+
+Nombre:	doc2-2.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta2\doc2-2.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:45:35.717963
+Modificado:	2023-03-20 09:44:16.808210
+
+Nombre:	doc2-3.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta2\doc2-3.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:45:50.588983
+Modificado:	2023-03-20 09:44:16.808210
+
+
+Contenido del subdirectorio Subcarpeta3
+
+Nombre:	doc3-1.txt
+Ruta:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta3\doc3-1.txt
+Tamaño:	0 bytes
+Creado:	2023-03-20 09:46:02.688804
+Modificado:	2023-03-20 09:44:16.808210
