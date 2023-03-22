@@ -35,6 +35,7 @@ def leer_directorios_consola(ruta_inicial, nombre_directorio):
 # Esta función vuelca en un archivo las propiedades de los archivos de un directorio especificado y de sus subdirectorios 
 def leer_directorios(archivo_resultado, ruta_inicial, nombre_directorio):
     ruta = ruta_inicial + "\\" + nombre_directorio
+    print("La ruta es: " + ruta)
     resultado = os.scandir(ruta)
     for elemento in resultado:
         if elemento.is_file():
