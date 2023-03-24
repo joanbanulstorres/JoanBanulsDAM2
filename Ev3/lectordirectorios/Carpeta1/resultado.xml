@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<directorio id='Carpeta1'>
+	<nombre>Carpeta1</nombre>
+	<ubicacion>C:\Users\joan\Desktop</ubicacion>
+	<tamano>4096 bytes</tamano>
+	<creado>2023-03-20 09:42:37.405885</creado>
+	<modificado>2023-03-24 15:36:29.875821</modificado>
+	<contenido>
+		<archivo>
+			<nombre>anterior.png</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>583 bytes</tamano>
+			<creado>2023-03-22 15:55:57.822097</creado>
+			<modificado>2023-03-22 15:56:09.610653</modificado>
+		</archivo>
+		<archivo>
+			<nombre>doc1.txt</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>0 bytes</tamano>
+			<creado>2023-03-20 09:44:16.808210</creado>
+			<modificado>2023-03-20 09:44:16.808210</modificado>
+		</archivo>
+		<archivo>
+			<nombre>doc2.txt</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>0 bytes</tamano>
+			<creado>2023-03-20 09:44:28.368915</creado>
+			<modificado>2023-03-20 09:44:16.808210</modificado>
+		</archivo>
+		<archivo>
+			<nombre>doc3.txt</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>0 bytes</tamano>
+			<creado>2023-03-20 09:44:43.404867</creado>
+			<modificado>2023-03-20 09:44:16.808210</modificado>
+		</archivo>
+		<archivo>
+			<nombre>eliminar.png</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>355 bytes</tamano>
+			<creado>2023-03-23 09:10:54.447973</creado>
+			<modificado>2023-03-23 09:10:58.975150</modificado>
+		</archivo>
+		<archivo>
+			<nombre>imagen.jpg</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>5661133 bytes</tamano>
+			<creado>2023-03-20 09:47:39.389687</creado>
+			<modificado>2023-03-20 09:47:57.843509</modificado>
+		</archivo>
+		<archivo>
+			<nombre>lectordirectorios.py</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>3217 bytes</tamano>
+			<creado>2023-03-20 09:35:48.039414</creado>
+			<modificado>2023-03-22 13:02:33.805054</modificado>
+		</archivo>
+		<archivo>
+			<nombre>lectordirectorios2.py</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>6547 bytes</tamano>
+			<creado>2023-03-21 09:09:06.458238</creado>
+			<modificado>2023-03-21 15:59:35.211914</modificado>
+		</archivo>
+		<archivo>
+			<nombre>lectordirectorios3.py</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>7078 bytes</tamano>
+			<creado>2023-03-22 08:56:44.710473</creado>
+			<modificado>2023-03-22 15:58:47.610442</modificado>
+		</archivo>
+		<archivo>
+			<nombre>resultado.txt</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>3209 bytes</tamano>
+			<creado>2023-03-22 13:43:14.465932</creado>
+			<modificado>2023-03-22 15:52:43.432833</modificado>
+		</archivo>
+		<directorio id='Subcarpeta1'>
+			<nombre>Subcarpeta 1</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>0 bytes</tamano>
+			<creado>2023-03-20 09:43:18.448218</creado>
+			<modificado>2023-03-20 14:42:55.925654</modificado>
+			<contenido>
+				<archivo>
+					<nombre>doc1-1.txt</nombre>
+					<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1</ubicacion>
+					<tamano>0 bytes</tamano>
+					<creado>2023-03-20 09:44:55.179140</creado>
+					<modificado>2023-03-20 09:44:16.808210</modificado>
+				</archivo>
+				<archivo>
+					<nombre>doc1-2.txt</nombre>
+					<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1</ubicacion>
+					<tamano>0 bytes</tamano>
+					<creado>2023-03-20 09:45:07.297119</creado>
+					<modificado>2023-03-20 09:44:16.808210</modificado>
+				</archivo>
+				<directorio id='Subcarpeta1-1'>
+					<nombre>Subcarpeta1-1</nombre>
+					<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1</ubicacion>
+					<tamano>0 bytes</tamano>
+					<creado>2023-03-20 14:42:35.895254</creado>
+					<modificado>2023-03-20 14:43:26.528597</modificado>
+					<contenido>
+						<directorio id='Subcarpeta1-1-1'>
+							<nombre>Subcarpeta1-1-1</nombre>
+							<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1\Subcarpeta1-1</ubicacion>
+							<tamano>0 bytes</tamano>
+							<creado>2023-03-20 14:43:02.331600</creado>
+							<modificado>2023-03-21 09:08:26.693907</modificado>
+							<contenido>
+								<archivo>
+									<nombre>doc1-1-1.txt</nombre>
+									<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1\Subcarpeta1-1\Subcarpeta1-1-1</ubicacion>
+									<tamano>0 bytes</tamano>
+									<creado>2023-03-21 09:08:21.041351</creado>
+									<modificado>2023-03-21 09:08:21.041351</modificado>
+								</archivo>
+							</contenido>
+						</directorio>
+						<directorio id='Subcarpeta1-1-2'>
+							<nombre>Subcarpeta1-1-2</nombre>
+							<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1\Subcarpeta1-1</ubicacion>
+							<tamano>0 bytes</tamano>
+							<creado>2023-03-20 14:43:17.544203</creado>
+							<modificado>2023-03-20 14:43:17.544203</modificado>
+							<contenido>
+							</contenido>
+						</directorio>
+					</contenido>
+				</directorio>
+				<directorio id='Subcarpeta1-2'>
+					<nombre>Subcarpeta1-2</nombre>
+					<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1</ubicacion>
+					<tamano>0 bytes</tamano>
+					<creado>2023-03-20 14:42:49.275151</creado>
+					<modificado>2023-03-20 14:42:49.275151</modificado>
+					<contenido>
+					</contenido>
+				</directorio>
+			</contenido>
+		</directorio>
+		<directorio id='Subcarpeta2'>
+			<nombre>Subcarpeta2</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>0 bytes</tamano>
+			<creado>2023-03-20 09:43:54.804972</creado>
+			<modificado>2023-03-20 09:45:58.048946</modificado>
+			<contenido>
+				<archivo>
+					<nombre>doc2-1.txt</nombre>
+					<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta2</ubicacion>
+					<tamano>0 bytes</tamano>
+					<creado>2023-03-20 09:45:26.303624</creado>
+					<modificado>2023-03-20 09:44:16.808210</modificado>
+				</archivo>
+				<archivo>
+					<nombre>doc2-2.txt</nombre>
+					<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta2</ubicacion>
+					<tamano>0 bytes</tamano>
+					<creado>2023-03-20 09:45:35.717963</creado>
+					<modificado>2023-03-20 09:44:16.808210</modificado>
+				</archivo>
+				<archivo>
+					<nombre>doc2-3.txt</nombre>
+					<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta2</ubicacion>
+					<tamano>0 bytes</tamano>
+					<creado>2023-03-20 09:45:50.588983</creado>
+					<modificado>2023-03-20 09:44:16.808210</modificado>
+				</archivo>
+			</contenido>
+		</directorio>
+		<directorio id='Subcarpeta3'>
+			<nombre>Subcarpeta3</nombre>
+			<ubicacion>C:\Users\joan\Desktop\Carpeta1</ubicacion>
+			<tamano>0 bytes</tamano>
+			<creado>2023-03-20 09:44:05.270264</creado>
+			<modificado>2023-03-20 09:46:12.208268</modificado>
+			<contenido>
+				<archivo>
+					<nombre>doc3-1.txt</nombre>
+					<ubicacion>C:\Users\joan\Desktop\Carpeta1\Subcarpeta3</ubicacion>
+					<tamano>0 bytes</tamano>
+					<creado>2023-03-20 09:46:02.688804</creado>
+					<modificado>2023-03-20 09:44:16.808210</modificado>
+				</archivo>
+			</contenido>
+		</directorio>
+	</contenido>
+</directorio>
