@@ -1,0 +1,158 @@
+Nombre:	Carpeta1
+Ubicación:	C:\Users\joan\Desktop
+Tamaño:	4096 bytes
+Creado:	2023-03-20 09:42:37.405885
+Modificado:	2023-03-24 15:36:29.875821
+Contenido:
+
+	Nombre:	anterior.png
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	583 bytes
+	Creado:	2023-03-22 15:55:57.822097
+	Modificado:	2023-03-22 15:56:09.610653
+
+	Nombre:	doc1.txt
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	0 bytes
+	Creado:	2023-03-20 09:44:16.808210
+	Modificado:	2023-03-20 09:44:16.808210
+
+	Nombre:	doc2.txt
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	0 bytes
+	Creado:	2023-03-20 09:44:28.368915
+	Modificado:	2023-03-20 09:44:16.808210
+
+	Nombre:	doc3.txt
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	0 bytes
+	Creado:	2023-03-20 09:44:43.404867
+	Modificado:	2023-03-20 09:44:16.808210
+
+	Nombre:	eliminar.png
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	355 bytes
+	Creado:	2023-03-23 09:10:54.447973
+	Modificado:	2023-03-23 09:10:58.975150
+
+	Nombre:	imagen.jpg
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	5661133 bytes
+	Creado:	2023-03-20 09:47:39.389687
+	Modificado:	2023-03-20 09:47:57.843509
+
+	Nombre:	lectordirectorios.py
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	3217 bytes
+	Creado:	2023-03-20 09:35:48.039414
+	Modificado:	2023-03-22 13:02:33.805054
+
+	Nombre:	lectordirectorios2.py
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	6547 bytes
+	Creado:	2023-03-21 09:09:06.458238
+	Modificado:	2023-03-21 15:59:35.211914
+
+	Nombre:	lectordirectorios3.py
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	7078 bytes
+	Creado:	2023-03-22 08:56:44.710473
+	Modificado:	2023-03-22 15:58:47.610442
+
+	Nombre:	resultado.txt
+	Ubicación:	C:\Users\joan\Desktop
+	Tamaño:	3209 bytes
+	Creado:	2023-03-22 13:43:14.465932
+	Modificado:	2023-03-22 15:52:43.432833
+
+	Nombre:	Subcarpeta 1
+	Ubicación:	C:\Users\joan\Desktop\Carpeta1
+	Tamaño:	0 bytes
+	Creado:	2023-03-20 09:43:18.448218
+	Modificado:	2023-03-20 14:42:55.925654
+	Contenido:
+
+		Nombre:	doc1-1.txt
+		Ubicación:	C:\Users\joan\Desktop\Carpeta1
+		Tamaño:	0 bytes
+		Creado:	2023-03-20 09:44:55.179140
+		Modificado:	2023-03-20 09:44:16.808210
+
+		Nombre:	doc1-2.txt
+		Ubicación:	C:\Users\joan\Desktop\Carpeta1
+		Tamaño:	0 bytes
+		Creado:	2023-03-20 09:45:07.297119
+		Modificado:	2023-03-20 09:44:16.808210
+
+		Nombre:	Subcarpeta1-1
+		Ubicación:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1
+		Tamaño:	0 bytes
+		Creado:	2023-03-20 14:42:35.895254
+		Modificado:	2023-03-20 14:43:26.528597
+		Contenido:
+
+			Nombre:	Subcarpeta1-1-1
+			Ubicación:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1\Subcarpeta1-1
+			Tamaño:	0 bytes
+			Creado:	2023-03-20 14:43:02.331600
+			Modificado:	2023-03-21 09:08:26.693907
+			Contenido:
+
+				Nombre:	doc1-1-1.txt
+				Ubicación:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1\Subcarpeta1-1
+				Tamaño:	0 bytes
+				Creado:	2023-03-21 09:08:21.041351
+				Modificado:	2023-03-21 09:08:21.041351
+
+			Nombre:	Subcarpeta1-1-2
+			Ubicación:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1\Subcarpeta1-1
+			Tamaño:	0 bytes
+			Creado:	2023-03-20 14:43:17.544203
+			Modificado:	2023-03-20 14:43:17.544203
+			Contenido:
+
+		Nombre:	Subcarpeta1-2
+		Ubicación:	C:\Users\joan\Desktop\Carpeta1\Subcarpeta 1
+		Tamaño:	0 bytes
+		Creado:	2023-03-20 14:42:49.275151
+		Modificado:	2023-03-20 14:42:49.275151
+		Contenido:
+
+	Nombre:	Subcarpeta2
+	Ubicación:	C:\Users\joan\Desktop\Carpeta1
+	Tamaño:	0 bytes
+	Creado:	2023-03-20 09:43:54.804972
+	Modificado:	2023-03-20 09:45:58.048946
+	Contenido:
+
+		Nombre:	doc2-1.txt
+		Ubicación:	C:\Users\joan\Desktop\Carpeta1
+		Tamaño:	0 bytes
+		Creado:	2023-03-20 09:45:26.303624
+		Modificado:	2023-03-20 09:44:16.808210
+
+		Nombre:	doc2-2.txt
+		Ubicación:	C:\Users\joan\Desktop\Carpeta1
+		Tamaño:	0 bytes
+		Creado:	2023-03-20 09:45:35.717963
+		Modificado:	2023-03-20 09:44:16.808210
+
+		Nombre:	doc2-3.txt
+		Ubicación:	C:\Users\joan\Desktop\Carpeta1
+		Tamaño:	0 bytes
+		Creado:	2023-03-20 09:45:50.588983
+		Modificado:	2023-03-20 09:44:16.808210
+
+	Nombre:	Subcarpeta3
+	Ubicación:	C:\Users\joan\Desktop\Carpeta1
+	Tamaño:	0 bytes
+	Creado:	2023-03-20 09:44:05.270264
+	Modificado:	2023-03-20 09:46:12.208268
+	Contenido:
+
+		Nombre:	doc3-1.txt
+		Ubicación:	C:\Users\joan\Desktop\Carpeta1
+		Tamaño:	0 bytes
+		Creado:	2023-03-20 09:46:02.688804
+		Modificado:	2023-03-20 09:44:16.808210
+
