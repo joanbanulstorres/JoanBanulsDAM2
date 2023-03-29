@@ -1,23 +1,11 @@
 from time import perf_counter
+import os
 
-######### ▼ CÁLCULOS DE UN NÚMERO ▼ ##########
+print("\nCargando...")
 
 tiempo_inicial = perf_counter()
-
 numero = 1.00000000054
-iteraciones = 10000000
-for i in range(iteraciones):
-    numero *= 1.000000000001
-
-tiempo = perf_counter() - tiempo_inicial
-print("Tiempo requerido para realizar los cálculos: " + str(tiempo) + " s")
-
-######### ▲ CÁLCULOS DE UN NÚMERO ▲ ##########
-
-
-######### ▼ CÁLCULOS DE UN NÚMERO Y ESCRITURA Y LECTURA DE ARCHIVOS ▼ ##########
-
-tiempo_inicial = perf_counter()
+iteraciones = 5000000
 
 # Escritura en el archivo 1
 archivo1 = open("archivo1.txt", "w")
@@ -37,7 +25,9 @@ for linea in lineas:
 archivo1.close()
 archivo2.close()
 
-tiempo = perf_counter() - tiempo_inicial
-print("Tiempo requerido para realizar los cálculos, escribir y leer en los archivos: " + str(tiempo) + " s")
+# Se borran los archivos
+os.remove("archivo1.txt")
+os.remove("archivo2.txt")
 
-######### ▲ CÁLCULOS DE UN NÚMERO Y ESCRITURA Y LECTURA DE ARCHIVOS ▲ ##########
+tiempo = perf_counter() - tiempo_inicial
+print("\nTiempo de ejecución: " + str(tiempo) + " s")
