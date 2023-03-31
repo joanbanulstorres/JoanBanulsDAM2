@@ -249,7 +249,7 @@ desplegable_formato.place(x=550, y=70, width=100)
 
 # BOTÓN CREAR ARCHIVO TXT
 #icono_crear_archivo = tk.PhotoImage(file='img/archivo_nuevo.png')
-estilo.configure('personalizado.TButton', font=(mifuente, 12),)
+estilo.configure('personalizado.TButton', font=(mifuente, 12))
 boton_crear_archivo = ttk.Button(raiz, text="Crear archivo", style='personalizado.TButton', command=lambda:generar_archivo(nueva_ruta))
 boton_crear_archivo.place(x=680, y=67, width=120, height=30)
 #boton_crear_archivo.bind("<Enter>", raton_dentro)

@@ -3,28 +3,15 @@ import os
 
 print("\nCargando...")
 
-iteraciones = 10000000
-
-# CÁLCULOS
-
 tiempo_inicial = perf_counter()
-
 numero = 1.00000000054
-
-for i in range(iteraciones):
-    numero *= 1.000000000001
-tiempo = perf_counter() - tiempo_inicial
-print("\nTiempo de ejecución (cálculos): " + str(tiempo) + " s")
-print("\nCargando...")
-
-# ESCRITURA Y LECTURA
-
-tiempo_inicial = perf_counter()
+iteraciones = 5000000
 
 # Escritura en el archivo 1
 archivo1 = open("archivo1.txt", "w")
 for i in range(iteraciones):
-    archivo1.write(str("hola") + "\n")
+    numero *= 1.000000000001
+    archivo1.write(str(numero) + "\n")
 archivo1.close()
 
 # Lectura del archivo 1 y escritura de su contenido en el archivo 2 
@@ -34,7 +21,7 @@ lineas = archivo1.readlines()
 contador = 0
 for linea in lineas:
     contador += 1
-    archivo2.write("Palabra {}: {}".format(contador, linea.strip()) + "\n")
+    archivo2.write("Valor del número en la iteración {}: {}".format(contador, linea.strip()) + "\n")
 archivo1.close()
 archivo2.close()
 
@@ -43,4 +30,4 @@ os.remove("archivo1.txt")
 os.remove("archivo2.txt")
 
 tiempo = perf_counter() - tiempo_inicial
-print("\nTiempo de ejecución (escritura y lectura): " + str(tiempo) + " s")
+print("\nTiempo de ejecución: " + str(tiempo) + " s")
