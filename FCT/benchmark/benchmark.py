@@ -3,9 +3,9 @@ import os
 
 iteraciones = 10000000
 
-print("\nCargando...")
-
 # CÁLCULOS - PROCESADOR
+
+print("\nCargando...")
 
 tiempo_inicial = perf_counter()
 
@@ -16,9 +16,9 @@ for i in range(iteraciones):
 tiempo = perf_counter() - tiempo_inicial
 print("\nTiempo de ejecución (procesador): " + str(tiempo) + " s")
 
-print("\nCargando...")
-
 # ESCRITURA Y LECTURA - DISCO DURO
+
+print("\nCargando...")
 
 tiempo_inicial = perf_counter()
 

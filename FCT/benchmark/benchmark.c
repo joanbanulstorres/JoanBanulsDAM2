@@ -6,10 +6,10 @@
 int main(){
     
     int iteraciones = 10000000;
-    
-    printf("Cargando...\n");
 
     // CÁLCULOS - PROCESADOR
+
+    printf("Cargando...\n");
     
     clock_t tiempo1 = clock();
 
@@ -20,10 +20,11 @@ int main(){
 
     tiempo1 = clock() - tiempo1;
     double tiempo_ejecucion1 = ((double)tiempo1)/CLOCKS_PER_SEC;
-    printf("\nTiempo de ejecucion: %f s\n", tiempo_ejecucion1);
-    printf("\nCargando...\n");
+    printf("\nTiempo de ejecucion (procesador): %f s\n", tiempo_ejecucion1);
 
     // ESCRITURA Y LECTURA - DISCO DURO
+
+    printf("\nCargando...\n");
 
     clock_t tiempo2 = clock();
 
@@ -51,7 +52,7 @@ int main(){
 
     tiempo2 = clock() - tiempo2;
     double tiempo_ejecucion2 = ((double)tiempo2)/CLOCKS_PER_SEC;
-    printf("\nTiempo de ejecucion: %f s\n\n", tiempo_ejecucion2);
+    printf("\nTiempo de ejecucion (disco duro): %f s\n\n", tiempo_ejecucion2);
 
     system("pause");
 
