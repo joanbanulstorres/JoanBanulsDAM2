@@ -1,23 +1,24 @@
 from time import perf_counter
 import os
 
-print("\nCargando...")
-
 iteraciones = 10000000
 
-# CÁLCULOS
+print("\nCargando...")
+
+# CÁLCULOS - PROCESADOR
 
 tiempo_inicial = perf_counter()
 
 numero = 1.00000000054
-
 for i in range(iteraciones):
     numero *= 1.000000000001
+
 tiempo = perf_counter() - tiempo_inicial
-print("\nTiempo de ejecución (cálculos): " + str(tiempo) + " s")
+print("\nTiempo de ejecución (procesador): " + str(tiempo) + " s")
+
 print("\nCargando...")
 
-# ESCRITURA Y LECTURA
+# ESCRITURA Y LECTURA - DISCO DURO
 
 tiempo_inicial = perf_counter()
 
@@ -43,4 +44,4 @@ os.remove("archivo1.txt")
 os.remove("archivo2.txt")
 
 tiempo = perf_counter() - tiempo_inicial
-print("\nTiempo de ejecución (escritura y lectura): " + str(tiempo) + " s")
+print("\nTiempo de ejecución (disco duro): " + str(tiempo) + " s")

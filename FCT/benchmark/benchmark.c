@@ -10,12 +10,11 @@ int main(){
     
     printf("Cargando...");
 
-    // CÁLCULOS
+    // CÁLCULOS - PROCESADOR
     
     clock_t tiempo1 = clock();
 
     double numero = 1.00000000054;
-
     for(int i=0; i<iteraciones; i++){
         numero *= 1.000000000001;
     }
@@ -25,32 +24,40 @@ int main(){
     printf("\nTiempo de ejecucion: %f s\n", tiempo_ejecucion1);
     printf("\nCargando...");
 
-    // ESCRITURA Y LECTURA
+    // ESCRITURA Y LECTURA - DISCO DURO
 
     clock_t tiempo2 = clock();
 
     FILE *puntero1;
     FILE *puntero2;
 
+    // Escritura en el archivo 1
     puntero1 = fopen("archivo1.txt", "w+");
-
     for(int i=0; i<iteraciones; i++){
         fputs("hola\n", puntero1);
     }
     
+    // Lectura del archivo 1 y escritura de su contenido en el archivo 2
     puntero2 = fopen("archivo2.txt", "w");
-
-    char line[100];
-    
-    while(fgets(line, sizeof(puntero1), puntero1)) {
-        fputs(line, puntero2); 
+    char linea[100];
+    int contador = 1;
+    char cadena[100];
+    char str_contador[10] = "";
+    while(fgets(linea, sizeof(puntero1), puntero1)) {
+        cadena[100] = "Palabra ";
+        itoa(contador, str_contador, 10);
+        strcat(cadena, str_contador);
+        strcat(cadena, ": ");
+        strcat(cadena, linea);
+        fputs(cadena, puntero2);
+        contador++;
     }
-
     fclose(puntero1);
     fclose(puntero2);
 
-    remove("archivo1.txt");
-    remove("archivo2.txt");
+    // Se borran los archivos
+    //remove("archivo1.txt");
+    //remove("archivo2.txt");
 
     tiempo2 = clock() - tiempo2;
     double tiempo_ejecucion2 = ((double)tiempo2)/CLOCKS_PER_SEC;
