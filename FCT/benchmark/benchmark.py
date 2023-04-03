@@ -34,8 +34,7 @@ archivo2 = open("archivo2.txt", "w")
 lineas = archivo1.readlines()
 contador = 0
 for linea in lineas:
-    contador += 1
-    archivo2.write("Palabra {}: {}".format(contador, linea.strip()) + "\n")
+    archivo2.write(linea.strip() + "\n")
 archivo1.close()
 archivo2.close()
 

@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 #include<time.h>
 #define MAX 100
 
@@ -8,7 +7,7 @@ int main(){
     
     int iteraciones = 10000000;
     
-    printf("Cargando...");
+    printf("Cargando...\n");
 
     // CÁLCULOS - PROCESADOR
     
@@ -22,7 +21,7 @@ int main(){
     tiempo1 = clock() - tiempo1;
     double tiempo_ejecucion1 = ((double)tiempo1)/CLOCKS_PER_SEC;
     printf("\nTiempo de ejecucion: %f s\n", tiempo_ejecucion1);
-    printf("\nCargando...");
+    printf("\nCargando...\n");
 
     // ESCRITURA Y LECTURA - DISCO DURO
 
@@ -40,28 +39,19 @@ int main(){
     // Lectura del archivo 1 y escritura de su contenido en el archivo 2
     puntero2 = fopen("archivo2.txt", "w");
     char linea[100];
-    int contador = 1;
-    char cadena[100];
-    char str_contador[10] = "";
     while(fgets(linea, sizeof(puntero1), puntero1)) {
-        cadena[100] = "Palabra ";
-        itoa(contador, str_contador, 10);
-        strcat(cadena, str_contador);
-        strcat(cadena, ": ");
-        strcat(cadena, linea);
-        fputs(cadena, puntero2);
-        contador++;
+        fputs(linea, puntero2); 
     }
     fclose(puntero1);
     fclose(puntero2);
 
     // Se borran los archivos
-    //remove("archivo1.txt");
-    //remove("archivo2.txt");
+    remove("archivo1.txt");
+    remove("archivo2.txt");
 
     tiempo2 = clock() - tiempo2;
     double tiempo_ejecucion2 = ((double)tiempo2)/CLOCKS_PER_SEC;
-    printf("\nTiempo de ejecucion: %f s\n", tiempo_ejecucion2);
+    printf("\nTiempo de ejecucion: %f s\n\n", tiempo_ejecucion2);
 
     system("pause");
 
