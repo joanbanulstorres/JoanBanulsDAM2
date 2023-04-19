@@ -6,6 +6,7 @@ import time
 import tkinter as tk
 from datetime import datetime
 from PIL import Image
+from PIL import ImageFilter
 from tkinter import filedialog
 from tkinter import ttk
 
@@ -54,38 +55,59 @@ def seleccionar_directorio_destino():
 def habilitar_btn():
     if ruta_origen.cget("text") != "" and error_directorio_origen.cget("text") == "":       # Si el directorio origen está bien definido   
         if ruta_destino.cget("text") != "" and error_directorio_destino.cget("text") == "": # Si el directorio destino está bien definido
-           btn_generar_imgs["state"] = "normal" 
+           btn_color_aleatorio["state"] = "normal"
+           btn_escala_grises["state"] = "normal"
     else:
-        btn_generar_imgs["state"] = "disabled"
-            
+        btn_color_aleatorio["state"] = "disabled"
+        btn_escala_grises["state"] = "disabled"
+
 # Aplica un filtro de color aleatorio a unas imágenes dadas y las guarda en un directorio 
-def generar_imgs():
-    print("Generando imagenes...")
+def color_aleatorio():
     contador = 1
     for elemento in os.scandir(ruta_origen.cget("text")):
         dividir_nombre = os.path.splitext(elemento.name)
         extension_archvio = dividir_nombre[1]
         if extension_archvio == ".jpg":
-            ruta_img0 = elemento.path.replace(os.sep, '/')                               # Para cambiar los back-slashes por forward-slashes
-            ruta_img = r'C:\Users\joan\Desktop\imgs2'
-            imagen = cv2.imread(ruta_img, 1)
-            imagen_modificada = cv2.cvtColor(imagen, cv2.COLOR_BGR2HSV)
-            
+            ruta_img = elemento.path.replace(os.sep, '/')                               # Para cambiar los back-slashes por forward-slashes
+            imagen = Image.open(ruta_img)
+            tabla = []
+            canales = 3
+            tamano = 2
+            longitud_tabla = canales * pow(tamano, 3)
+            for i in range(longitud_tabla):
+                tabla.append(random.randint(0,1))
+            imagen_modificada = imagen.filter(ImageFilter.Color3DLUT(tamano, tabla))
             nombre_img = "img" + str(contador) + " " + datetime.now().strftime('%Y-%m-%d %H-%M-%S') + ".jpg"
             ruta = ruta_destino.cget("text") + "/" + nombre_img
-            cv2.imwrite(nombre_img, ruta)
+            imagen_modificada.save(ruta, format='JPEG')
             contador += 1
     estado.configure(text="Completado")
-##    time.sleep(5)
-##    estado.configure(text="")
-
+            
+# Convierte a escala de grises unas imágenes dadas y las guarda en un directorio 
+def escala_grises():
+    contador = 1
+    for elemento in os.scandir(ruta_origen.cget("text")):
+        dividir_nombre = os.path.splitext(elemento.name)
+        extension_archvio = dividir_nombre[1]
+        if extension_archvio == ".jpg":
+            ruta_img = elemento.path.replace(os.sep, '/')                              # Para cambiar los back-slashes por forward-slashes
+            imagen = cv2.imread(ruta_img)
+            imagen_modificada = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
+            nombre_img = "img" + str(contador) + " " + datetime.now().strftime('%Y-%m-%d %H-%M-%S') + ".jpg"
+            ruta = ruta_destino.cget("text") + "/" + nombre_img
+            cv2.imwrite(ruta, imagen_modificada)
+            contador += 1
+    estado.configure(text="Completado")
     
-########## ▲ DECLARACIÓN DE FUNCIONES ▲ ##########GENERALES ▼ ##########
+########## ▲ DECLARACIÓN DE FUNCIONES ▲ ##########
+    
+
+########## ▼ VARIABLES GENERALES ▼ ##########
     
 ctypes.windll.shcore.SetProcessDpiAwareness(2)
 user32 = ctypes.windll.user32
 anchura = user32.GetSystemMetrics(0)*0.6
-altura = user32.GetSystemMetrics(1)*0.185
+altura = user32.GetSystemMetrics(1)*0.19
 
 color_fondo = '#ffffff'
 color_texto = '#000000'
@@ -110,6 +132,8 @@ estilo = ttk.Style()
 ########## ▲ VENTANA PRINCIPAL ▲ ##########
 
 icono_directorio = tk.PhotoImage(file='directorio.png')
+icono_colores = tk.PhotoImage(file='coloraleatorio.png')
+icono_grises = tk.PhotoImage(file='escalagrises.png')
 
 ########## ▼ DIRECTORIO ORIGEN ▼ ##########
 
@@ -128,7 +152,6 @@ error_directorio_origen = tk.Label(raiz, text="", font=(mifuente,9), bg=color_fo
 error_directorio_origen.grid(sticky="w", row=0, column=3, padx=5, pady=10)
 
 ########## ▲ DIRECTORIO ORIGEN ▲ ##########
-
 
 ########## ▼ DIRECTORIO DESTINO ▼ ##########
 
@@ -151,16 +174,28 @@ error_directorio_destino.grid(sticky="w", row=1, column=3, padx=5, pady=10)
 formatos = tk.Label(raiz, text="Formatos soportados: jpg", font=(mifuente,9), bg=color_fondo, fg=color_texto)
 formatos.grid(sticky="w", row=2, column=0, columnspan=4, padx=(15,0), pady=(5,10))
 
-estilo.configure('personalizado.TButton', font=(mifuente, 10))
-btn_generar_imgs = ttk.Button(raiz, text="Generar imágenes", style='personalizado.TButton', command=lambda:generar_imgs())
-btn_generar_imgs.grid(sticky="w", row=3, column=0, padx=(15,0), pady=(5,10))
-btn_generar_imgs["state"] = "disabled"
+########## ▼ BOTONES PARA APLICAR FILTROS ▼ ##########
 
-error_generar_imgs = tk.Label(raiz, text="", font=(mifuente,9), bg=color_fondo, fg=color_error)
-error_generar_imgs.grid(sticky="w", row=3, column=1, padx=(15,0), pady=(5,10))
+marco_botones = tk.Frame(raiz, bg=color_fondo)
 
-estado = tk.Label(raiz, text="", font=(mifuente,9), bg=color_fondo, fg=color_correcto)
-estado.grid(sticky="w", row=3, column=1, columnspan=3, padx=5, pady=(5,10))
+btn_color_aleatorio = tk.Button(marco_botones, image=icono_colores, bg=color_fondo, borderwidth=0, command=lambda:color_aleatorio())
+btn_color_aleatorio.pack(side="left", fill=None, expand=False)
+btn_color_aleatorio.bind('<Enter>', raton_dentro)
+btn_color_aleatorio.bind('<Leave>', raton_fuera)
+btn_color_aleatorio["state"] = "disabled"
+
+btn_escala_grises = tk.Button(marco_botones, image=icono_grises, bg=color_fondo, borderwidth=0, command=lambda:escala_grises())
+btn_escala_grises.pack(side="left", fill=None, expand=False)
+btn_escala_grises.bind('<Enter>', raton_dentro)
+btn_escala_grises.bind('<Leave>', raton_fuera)
+btn_escala_grises["state"] = "disabled"
+
+estado = tk.Label(marco_botones, text="", font=(mifuente,9), bg=color_fondo, fg=color_correcto)
+estado.pack(side="left", fill=None, expand=False, padx=5)
+
+marco_botones.grid(sticky="w", row=3, column=0, padx=(15,0), pady=(5,10))
+
+########## ▲ BOTONES PARA APLICAR FILTROS ▲ ##########
 
 ########## ▼ ANTIALIASING TKINTER ▼ ##########
 

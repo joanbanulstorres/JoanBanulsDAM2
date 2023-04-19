@@ -1,22 +1,29 @@
+import ctypes
+import os
 import tkinter as tk
-from tkinter import *
 from tkinter import ttk
 from tkinter.filedialog import askopenfilename
-import os
-import ctypes
+from tkinter import *
+
+########## ▼ DECLARACIÓN DE FUNCIONES ▼ ##########
 
 def seleccionar_archivo(menu, nombre_archivo_texto):
     ruta = askopenfilename()
     nombre_archivo = str(os.path.basename(ruta))
     nombre_archivo_texto.configure(text=nombre_archivo)
     #archivo = open(ruta, 'r')
-    
+
+########## ▲ DECLARACIÓN DE FUNCIONES ▲ ##########
+
+########## ▼ RESOLUCIÓN DE LA VENTANA ▼ ##########
 
 ctypes.windll.shcore.SetProcessDpiAwareness(2)
 user32 = ctypes.windll.user32
 resolucion = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
 anchura_marco = (user32.GetSystemMetrics(0))
 altura_marco = (user32.GetSystemMetrics(1))
+
+########## ▲ RESOLUCIÓN DE LA VENTANA ▲ ##########
 
 color_fondo = '#ffffff'
 color_texto = '#000000'
@@ -29,12 +36,11 @@ color_linea_marco = "#000000"
 
 raiz = tk.Tk()
 raiz.title("Comparador de archivos")
-raiz.state('zoomed')
+raiz.state('zoomed')                                                                                                    # Pantalla completa
 raiz.geometry('%dx%d' % resolucion)
 raiz.configure(bg=color_fondo)
 
 ########## ▲ MENÚ ▲ ##########
-
 
 ########## ▼ VENTANA PRINCIPAL ▼ ##########
 
@@ -54,8 +60,7 @@ nombre_archivo2.grid(row=2, column=2)
 
 ########## ▲ VENTANA PRINCIPAL ▲ ##########
 
-
-########## ▼ CÓDIGO ▼ ##########
+########## ▼ CAJA DEL CÓDIGO ▼ ##########
 
 cuadro = tk.Frame(raiz)
 cuadro.config(bg="#b0b0b0", highlightbackground=color_linea_marco, highlightthickness=2)
@@ -71,8 +76,7 @@ codigo.pack(padx=(2.5, 5), pady=(5, 5), side=RIGHT)
 
 #numeros = tk.Label(codigo, text)
 
-########## ▲ CÓDIGO ▲ ##########
-
+########## ▼ CAJA DEL CÓDIGO ▼ ##########
 
 ########## ▼ ANTIALIASING TKINTER ▼ ##########
 
@@ -86,5 +90,4 @@ finally:
 
 ########## ▲ ANTIALIASING TKINTER ▲ ##########
     
-
 ########## ▲ INTERFAZ DE USUARIO ▲ ##########
