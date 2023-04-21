@@ -13,26 +13,38 @@ def raton_dentro(e):
 def raton_fuera(e):
     e.widget['background'] = '#ffffff'
 
-def seleccionar_archivo(nombre_archivo_texto):
-    ruta = askopenfilename()
-    nombre_archivo = str(os.path.basename(ruta))
-    nombre_archivo_texto.configure(text=nombre_archivo)
-    #archivo = open(ruta, 'r')
-    seleccionar_contenido(ruta)
-
+# Al hacer click en el botón pertinente, pide seleccionar archivo y escribe su nombre y contenido el la interfaz del programa 
+def seleccionar_archivo(archA, archB, ruta):
+    ruta_archivo = askopenfilename()
+    if ruta_archivo != "":
+        ruta.grid()
+        ruta.configure(text=ruta_archivo)
+        archA.grid()
+        nombre_archA = str(os.path.basename(ruta_archivo))
+        archA.configure(text=nombre_archA, font=mifuente2)
+        archB.configure(font=(mifuente, 9))
+        seleccionar_contenido(ruta_archivo)
+    
 def comparar():
     print("Comparar")
 
-def seleccionar_contenido(archivo):
-    print(archivo)
-    archivo = open(archivo, "r")
+# Selecciona línea a línea el contenido de un archivo y las escribe en la interfaz del programa
+def seleccionar_contenido(ruta_archivo):
+    lista_lineas = []
+    for widget in codigo.winfo_children():
+        widget.destroy()
+    archivo = open(ruta_archivo, "r")
     lineas = archivo.readlines()
     contador = 0
     for linea in lineas:
-        lineas1.append(tk.Label(codigo, text=linea, bg="#0000ff", font=(mifuente, 9), anchor="nw"))
-        print(lineas1[contador]['text'])
-        lineas1[contador].grid(sticky="w", row=0, column=0)     
-    
+        lista_lineas.append(tk.Label(codigo, text=linea, bg=color_fondo_widgets, font=(mifuente, 9), anchor="nw"))
+        lista_lineas[contador].grid(sticky="w", row=contador, column=0)
+        contador+=1
+
+def cambiar_contenido(archA, archB, ruta):
+    archA.configure(font=mifuente2)
+    archB.configure(font=(mifuente, 9))
+    seleccionar_contenido(ruta)
 
 ########## ▲ DECLARACIÓN DE FUNCIONES ▲ ##########
 
@@ -54,8 +66,8 @@ grosor_borde = 2
 margen1 = 10
 margen2 = 5
 mifuente = 'Verdana'
+mifuente2 = 'Verdana 9 bold'
 lineas1 = []
-lineas2 = []
 
 ########## ▼ INTERFAZ DE USUARIO ▼ ##########
 
@@ -83,24 +95,42 @@ menu.pack(padx=margen1, pady=(margen1, margen2), anchor="w")
 icono_directorio = tk.PhotoImage(file='directorio.png')
 icono_comparar = tk.PhotoImage(file='comparar.png')
 
-boton_doc1 = tk.Button(menu, image=icono_directorio, bg=color_fondo_widgets, borderwidth=0, command=lambda:seleccionar_archivo(doc1))
+########## ▼ DOC 1 ▼ ##########
+
+boton_doc1 = tk.Button(menu, image=icono_directorio, bg=color_fondo_widgets, borderwidth=0, command=lambda:seleccionar_archivo(doc1, doc2, ruta_doc1))
 boton_doc1.grid(sticky="w", row=0, column=0)
 boton_doc1.bind('<Enter>', raton_dentro)
 boton_doc1.bind('<Leave>', raton_fuera)
 
-doc1 = tk.Label(menu, text="", bg=color_fondo_widgets, font=(mifuente, 9))
-doc1.grid(sticky="w", row=0, column=1)
+ruta_doc1 = tk.Label(menu, text="", font=(mifuente, 9), bg=color_fondo_widgets)
+ruta_doc1.grid(sticky="w", row=1, column=1)
+ruta_doc1.grid_remove()
 
-separador = tk.Label(menu, text="-", bg=color_fondo_widgets, font=(mifuente, 9))
+doc1 = tk.Button(menu, text="", font=(mifuente, 9), borderwidth=0, bg=color_fondo_widgets, command=lambda:cambiar_contenido(doc1, doc2, ruta_doc1.cget("text")))
+doc1.grid(sticky="w", row=0, column=1)
+doc1.grid_remove()
+
+########## ▲ DOC 1 ▲ ##########
+
+separador = tk.Label(menu, text="-", font=(mifuente, 9), bg=color_fondo_widgets)
 separador.grid(sticky="w", row=0, column=2, padx=(0, 3))
 
-boton_doc2 = tk.Button(menu, image=icono_directorio, bg=color_fondo_widgets, borderwidth=0, command=lambda:seleccionar_archivo(doc2))
+########## ▼ DOC 2 ▼ ##########
+
+boton_doc2 = tk.Button(menu, image=icono_directorio, bg=color_fondo_widgets, borderwidth=0, command=lambda:seleccionar_archivo(doc2, doc1, ruta_doc2))
 boton_doc2.grid(sticky="w", row=0, column=3)
 boton_doc2.bind('<Enter>', raton_dentro)
 boton_doc2.bind('<Leave>', raton_fuera)
 
-doc2 = tk.Label(menu, text="", bg=color_fondo_widgets, font=(mifuente, 9))
+doc2 = tk.Button(menu, text="", font=(mifuente, 9), borderwidth=0, bg=color_fondo_widgets, command=lambda:cambiar_contenido(doc2, doc1, ruta_doc2.cget("text")))
 doc2.grid(sticky="w", row=0, column=4)
+doc2.grid_remove()
+
+ruta_doc2 = tk.Label(menu, text="", font=(mifuente, 9), bg=color_fondo_widgets)
+ruta_doc2.grid(sticky="w", row=1, column=4)
+ruta_doc2.grid_remove()
+
+########## ▲ DOC 2 ▲ ##########
 
 boton_comparar = tk.Button(menu, image=icono_comparar, bg=color_fondo_widgets, borderwidth=0, command=lambda:comparar())
 boton_comparar.grid(sticky="w", row=0, column=5, padx=(3,0))
