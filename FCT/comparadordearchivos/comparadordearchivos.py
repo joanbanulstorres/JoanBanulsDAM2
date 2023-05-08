@@ -24,19 +24,6 @@ def seleccionar_archivo(archA, archB, ruta, ambival_arch):
         archA.configure(text=nombre_archA, font=mifuente2)
         archB.configure(font=(mifuente, tamano_fuente))
         escribir_contenido(ruta_archivo, ambival_arch)
-        
-def comparar():
-    print("Comparar")
-    lista_lineas = []
-    for widget in codigo.winfo_children():      
-        widget.destroy()
-    archivo = open(ruta_archivo, "r")
-    lineas = archivo.readlines()
-    contador = 0
-    for linea in lineas:
-        lista_lineas.append(tk.Label(codigo, text=linea.replace("\n", ""), bg=color_fondo_widgets, font=(mifuente, tamano_fuente), anchor="nw"))
-        lista_lineas[contador].grid(sticky="w", row=contador, column=0)
-        contador+=1
 
 # Selecciona línea a línea el contenido de un archivo y las escribe en la interfaz del programa
 def escribir_contenido(ruta_archivo, ambival_arch):
@@ -45,27 +32,43 @@ def escribir_contenido(ruta_archivo, ambival_arch):
     if ambival_arch == "doc2":
         lista_lineas2.clear()
     lista_lineas = []
-    for widget in codigo.winfo_children():      # Se limpia la página destruyendo las líneas de texto que había
+    for widget in codigo.winfo_children():      # Se limpia la página destruyendo las líneas de texto (Labels) que había
         widget.destroy()
     archivo = open(ruta_archivo, "r")
     lineas = archivo.readlines()
-    contador = 0
-    for linea in lineas:
+    for i, linea in enumerate(lineas):
         if ambival_arch == "doc1":
-            lista_lineas1.append(linea.replace("\n", ""))
+            lista_lineas1.append(linea.strip())
         if ambival_arch == "doc2":
-            lista_lineas2.append(linea.replace("\n", ""))
+            lista_lineas2.append(linea.strip())
         lista_lineas.append(tk.Label(codigo, text=linea.replace("\n", ""), bg=color_fondo_widgets, font=(mifuente, tamano_fuente), anchor="nw"))
-        lista_lineas[contador].grid(sticky="w", row=contador, column=0)
-        contador+=1
+        lista_lineas[i].grid(sticky="w", row=i, column=0)
+        
     print(lista_lineas1)
     print(lista_lineas2)
     
 def cambiar_contenido(archA, archB, ruta):
     archA.configure(font=mifuente2)
     archB.configure(font=(mifuente, tamano_fuente))
-    escribir_contenido(ruta)
+    escribir_contenido(ruta, "")
 
+def comparar(lineasA, lineasB):
+    print("Comparar")
+    lista_lineas = []
+    for widget in codigo.winfo_children():      
+        widget.destroy()
+    for i, lineaA in enumerate(lineasA):
+        mismalinea = False
+        for lineaB in lineasB:
+            if lineaA == lineaB:
+                mismalinea = True
+        if mismalinea == True:
+            lista_lineas.append(tk.Label(codigo, text=lineaA, bg=color_fondo_widgets, font=(mifuente, tamano_fuente), anchor="nw"))
+            lista_lineas[i].grid(sticky="w", row=i, column=0)
+        else:
+            lista_lineas.append(tk.Label(codigo, text=lineaA, bg='#98FB98', font=(mifuente, tamano_fuente), anchor="nw"))
+            lista_lineas[i].grid(sticky="w", row=i, column=0)
+    
 ########## ▲ DECLARACIÓN DE FUNCIONES ▲ ##########
 
 ########## ▼ DIMENSIONES DE LA VENTANA ▼ ##########
@@ -155,7 +158,7 @@ ruta_doc2.grid_remove()
 
 ########## ▲ DOC 2 ▲ ##########
 
-boton_comparar = tk.Button(menu, image=icono_comparar, bg=color_fondo_widgets, borderwidth=0, command=lambda:comparar())
+boton_comparar = tk.Button(menu, image=icono_comparar, bg=color_fondo_widgets, borderwidth=0, command=lambda:comparar(lista_lineas1, lista_lineas2))
 boton_comparar.grid(sticky="w", row=0, column=5, padx=(3,0))
 boton_comparar.bind('<Enter>', raton_dentro)
 boton_comparar.bind('<Leave>', raton_fuera)
