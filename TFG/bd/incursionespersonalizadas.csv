@@ -1,0 +1,16 @@
+Identificador;id_incursion;id_usuario;cargo
+1;1;1;líder
+2;2;1;líder
+3;2;2;incursionista
+4;2;5;incursionista
+5;2;8;incursionista
+6;3;3;líder
+7;3;2;incursionista
+8;3;7;incursionista
+9;4;2;líder
+10;4;4;incursionista
+11;4;6;incursionista
+12;5;1;líder
+13;5;3;incursionista
+14;5;7;incursionista
+15;5;8;incursionista

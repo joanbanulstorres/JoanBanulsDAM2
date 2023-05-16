@@ -1,0 +1,44 @@
+[
+{"type":"header","version":"5.1.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"bdprueba"},
+{"type":"table","name":"incursiones","database":"bdprueba","data":
+[
+{"Identificador":"1","nombre":"Incursión Playa de Marenys de Rafalcaid ","descripcion":"Esta es la descripción para la Incursión a la Playa de Marenys de Rafalcaid.","imagen":"playacontaminada .jpeg","fecha":"2023-05-22 11:00:00","localizacion":"Playa de Marenys de Rafalcaid\nCarrer de Rafalcaid, 46730 Gandia, Valencia","linklocalizacion":"https:\/\/goo.gl\/maps\/EBVrgEVYczpMGhkW6","lider":"joanbt","minparticipantes":"10","participantesactuales":"1"},
+{"Identificador":"2","nombre":"Incursión El Portalet","descripcion":"Esta es la descripción para la Incursión a el Portalet.","imagen":"montañacontaminada.jpg","fecha":"2023-06-08 09:00:00","localizacion":"El Portalet (SL-CV80)\r\n46728 Gandia, Valencia","linklocalizacion":"https:\/\/goo.gl\/maps\/2suVziycb9tPbGrZ7","lider":"joanbt","minparticipantes":"15","participantesactuales":"4"},
+{"Identificador":"3","nombre":"Incursión Mirador de las Aves","descripcion":"Esta es la descripción para la Incursión a el Mirador de las Aves.","imagen":"montañacontaminada4.jpg","fecha":"2023-05-24 17:00:00","localizacion":"Mirador de las Aves\nPlaça Poligono 07, 2, 46770, Valencia","linklocalizacion":"https:\/\/goo.gl\/maps\/pRA2EV4DhtdfxHv26","lider":"victoriacm","minparticipantes":"8","participantesactuales":"3"},
+{"Identificador":"4","nombre":"Incursión Fuente del Mondúver","descripcion":"Esta es la descripción para la Incursión a la Fuente del Mondúver.","imagen":"montañacontaminada3.jpg","fecha":"2023-06-02 10:00:00","localizacion":"Fuente del Mondúver\r\n46790 Xeresa, Valencia","linklocalizacion":"https:\/\/goo.gl\/maps\/dXQEZt4PDqUuFwCu8","lider":"adriandb","minparticipantes":"6","participantesactuales":"3"},
+{"Identificador":"5","nombre":"Incursión Torradores Marxuquera","descripcion":"Esta es la descripción para la Incursión a los Torradores de Marxuquera.","imagen":"montañacontaminada2.jpg","fecha":"2023-05-28 18:00:00","localizacion":"Torradores Marxuquera\r\nCarrer Cami Vell de Pinet, 43, 46728 Gandia, Valencia","linklocalizacion":"https:\/\/goo.gl\/maps\/1SGYYAeoNGXjAjUF7","lider":"joanbt","minparticipantes":"10","participantesactuales":"4"}
+]
+}
+,{"type":"table","name":"incursionespersonales","database":"bdprueba","data":
+[
+{"Identificador":"1","id_incursion":"1","id_usuario":"1","cargo":"líder"},
+{"Identificador":"2","id_incursion":"2","id_usuario":"1","cargo":"líder"},
+{"Identificador":"3","id_incursion":"2","id_usuario":"2","cargo":"incursionista"},
+{"Identificador":"4","id_incursion":"2","id_usuario":"5","cargo":"incursionista"},
+{"Identificador":"5","id_incursion":"2","id_usuario":"8","cargo":"incursionista"},
+{"Identificador":"6","id_incursion":"3","id_usuario":"3","cargo":"líder"},
+{"Identificador":"7","id_incursion":"3","id_usuario":"2","cargo":"incursionista"},
+{"Identificador":"8","id_incursion":"3","id_usuario":"7","cargo":"incursionista"},
+{"Identificador":"9","id_incursion":"4","id_usuario":"2","cargo":"líder"},
+{"Identificador":"10","id_incursion":"4","id_usuario":"4","cargo":"incursionista"},
+{"Identificador":"11","id_incursion":"4","id_usuario":"6","cargo":"incursionista"},
+{"Identificador":"12","id_incursion":"5","id_usuario":"1","cargo":"líder"},
+{"Identificador":"13","id_incursion":"5","id_usuario":"3","cargo":"incursionista"},
+{"Identificador":"14","id_incursion":"5","id_usuario":"7","cargo":"incursionista"},
+{"Identificador":"15","id_incursion":"5","id_usuario":"8","cargo":"incursionista"}
+]
+}
+,{"type":"table","name":"usuarios","database":"bdprueba","data":
+[
+{"Identificador":"1","nombre":"Joan","apellidos":"Bañuls Torres","email":"joanbanyulstorres@gmail.com","usuario":"joanbt","contrasena":"joanbt","incursionescompletadas":"3"},
+{"Identificador":"2","nombre":"Adrian","apellidos":"Dos Santos Baeza","email":"adriandossantosbaeza@gmail.com","usuario":"adriandb","contrasena":"adriandb","incursionescompletadas":"2"},
+{"Identificador":"3","nombre":"Victoria","apellidos":"Cuadros Mansilla","email":"victoriacuadrosmansilla@gmail.com","usuario":"victoriacm","contrasena":"victoriacm","incursionescompletadas":"5"},
+{"Identificador":"4","nombre":"Lucia","apellidos":"Ruz Real","email":"luciaruzreal@gmail.com","usuario":"luciarr","contrasena":"luciarr","incursionescompletadas":"1"},
+{"Identificador":"5","nombre":"Noelia","apellidos":"Vasquez Villalba","email":"noeliavasquezvillalba@gmail.com","usuario":"noeliavv","contrasena":"noeliavv","incursionescompletadas":"0"},
+{"Identificador":"6","nombre":"Guillermo","apellidos":"Georgieva Palencia","email":"guillermogeorgievapalencia@gmail.com","usuario":"guillermogp","contrasena":"guillermogp","incursionescompletadas":"0"},
+{"Identificador":"7","nombre":"Antonio","apellidos":"Jara Zabaleta","email":"antoniojarazabaleta@gmail.com","usuario":"antoniojz","contrasena":"antoniojz","incursionescompletadas":"0"},
+{"Identificador":"8","nombre":"Natalia","apellidos":"Galisteo Hernan","email":"nataliagalisteohernan@gmail.com","usuario":"nataliagh","contrasena":"nataliagh","incursionescompletadas":"0"}
+]
+}
+]
