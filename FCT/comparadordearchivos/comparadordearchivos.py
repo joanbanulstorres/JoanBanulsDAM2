@@ -36,13 +36,19 @@ def escribir_contenido(ruta_archivo, ambival_arch):
         widget.destroy()
     archivo = open(ruta_archivo, "r")
     lineas = archivo.readlines()
+    texto = tk.Text(codigo, height=40, bg=color_fondo_widgets, borderwidth=1, font=(mifuente, tamano_fuente))
     for i, linea in enumerate(lineas):
         if ambival_arch == "doc1":
             lista_lineas1.append(linea.strip())
         if ambival_arch == "doc2":
             lista_lineas2.append(linea.strip())
-        lista_lineas.append(tk.Label(codigo, text=linea.replace("\n", ""), bg=color_fondo_widgets, font=(mifuente, tamano_fuente), anchor="nw"))
-        lista_lineas[i].grid(sticky="w", row=i, column=0)
+        
+        texto.insert(END, linea)
+        #texto.configure(state="disabled")
+        lista_lineas.append(texto)
+        lista_lineas[i].grid(sticky="w", row=i, column=0)   #?
+        
+    texto.grid(sticky="w", row=0, column=0)
         
     print(lista_lineas1)
     print(lista_lineas2)
@@ -88,7 +94,7 @@ color_fondo_widgets = "white"
 grosor_borde = 2
 margen1 = 10
 margen2 = 5
-mifuente = 'Verdana'
+mifuente = 'Arial'
 mifuente2 = 'Verdana 11 bold'
 tamano_fuente = 11
 
