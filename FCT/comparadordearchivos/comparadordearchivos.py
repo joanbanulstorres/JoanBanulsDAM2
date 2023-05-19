@@ -27,16 +27,14 @@ def seleccionar_archivo(archA, archB, ruta, ambival_arch):
 
 # Selecciona línea a línea el contenido de un archivo y las escribe en la interfaz del programa
 def escribir_contenido(ruta_archivo, ambival_arch):
+    texto.delete('1.0', END)    # Limpia el área de texto
     if ambival_arch == "doc1":
         lista_lineas1.clear()
     if ambival_arch == "doc2":
         lista_lineas2.clear()
-    lista_lineas = []
-    for widget in codigo.winfo_children():      # Se limpia la página destruyendo las líneas de texto (Labels) que había
-        widget.destroy()
+##    lista_lineas = []
     archivo = open(ruta_archivo, "r")
     lineas = archivo.readlines()
-    texto = tk.Text(codigo, height=40, bg=color_fondo_widgets, borderwidth=1, font=(mifuente, tamano_fuente))
     for i, linea in enumerate(lineas):
         if ambival_arch == "doc1":
             lista_lineas1.append(linea.strip())
@@ -44,25 +42,21 @@ def escribir_contenido(ruta_archivo, ambival_arch):
             lista_lineas2.append(linea.strip())
         
         texto.insert(END, linea)
-        #texto.configure(state="disabled")
-        lista_lineas.append(texto)
-        lista_lineas[i].grid(sticky="w", row=i, column=0)   #?
-        
-    texto.grid(sticky="w", row=0, column=0)
-        
-    print(lista_lineas1)
-    print(lista_lineas2)
+##        texto.configure(state="disabled")
+##        lista_lineas.append(texto)
+##        lista_lineas[i].grid(sticky="w", row=i, column=0)   #?
+                
+##    print(lista_lineas1)
+##    print(lista_lineas2)
     
 def cambiar_contenido(archA, archB, ruta):
     archA.configure(font=mifuente2)
     archB.configure(font=(mifuente, tamano_fuente))
     escribir_contenido(ruta, "")
 
-def comparar(lineasA, lineasB):
-    print("Comparar")
+# No se usa
+def comparar0(lineasA, lineasB):
     lista_lineas = []
-    for widget in codigo.winfo_children():      
-        widget.destroy()
     for i, lineaA in enumerate(lineasA):
         mismalinea = False
         for lineaB in lineasB:
@@ -74,6 +68,18 @@ def comparar(lineasA, lineasB):
         else:
             lista_lineas.append(tk.Label(codigo, text=lineaA, bg='#98FB98', font=(mifuente, tamano_fuente), anchor="nw"))
             lista_lineas[i].grid(sticky="w", row=i, column=0)
+
+def comparar(lineasA, lineasB):
+    texto.delete('1.0', END)    # Limpia el área de texto
+    for i, lineaA in enumerate(lineasA):
+        mismalinea = False
+        for lineaB in lineasB:
+            if lineaA == lineaB:
+                mismalinea = True
+        if mismalinea == True:
+            texto.insert(END, lineaA + "\n", 'mismalinea')
+        else:
+            texto.insert(END, lineaA + "\n", 'nuevalinea')
     
 ########## ▲ DECLARACIÓN DE FUNCIONES ▲ ##########
 
@@ -87,14 +93,14 @@ altura_ventana = (user32.GetSystemMetrics(1))
 
 ########## ▲ DIMENSIONES DE LA VENTANA ▲ ##########
 
-color_fondo = '#DDDDDD'
-color_borde = '#7B7B7B'
+color_fondo = '#4C4A48' # '#DDDDDD'
+color_borde = '#000000' # '#7B7B7B'
 color_texto = 'black'
-color_fondo_widgets = "white"
-grosor_borde = 2
+color_fondo_widgets = 'white'
+grosor_borde = 3
 margen1 = 10
 margen2 = 5
-mifuente = 'Arial'
+mifuente = 'Verdana 11'
 mifuente2 = 'Verdana 11 bold'
 tamano_fuente = 11
 
@@ -181,19 +187,20 @@ numeros = tk.Frame(cuadro)
 numeros.config(width=30, height=altura_ventana, bg=color_fondo_widgets, highlightbackground=color_borde, highlightthickness=grosor_borde)
 numeros.pack(padx=(0, 5), pady=0, side=LEFT)
 
-contenedor_codigo = tk.Frame(cuadro)
-contenedor_codigo.config(width=anchura_ventana, height=altura_ventana, bg=color_fondo_widgets, highlightbackground=color_borde, highlightthickness=grosor_borde)
-contenedor_codigo.pack(padx=(5, 0), pady=0, side=RIGHT)
-
-codigo = tk.Frame(contenedor_codigo)
-codigo.config(width=anchura_ventana, height=altura_ventana, bg=color_fondo_widgets)
+codigo = tk.Frame(cuadro)
+codigo.config(width=anchura_ventana, height=altura_ventana, bg=color_fondo_widgets, highlightbackground=color_borde, highlightthickness=grosor_borde)
 codigo.pack(padx=0, pady=0, side=RIGHT)
-codigo.grid_propagate(False)
+codigo.pack_propagate(False)
 
-##ejemplo = tk.Label(codigo, text="ejemplo", bg=color_fondo_widgets, font=(mifuente, 9), anchor="nw")
-##ejemplo.grid(sticky="w", row=0, column=0)
+texto = tk.Text(codigo, height=40, highlightcolor='red', padx=5, pady=5, bg=color_fondo_widgets, borderwidth=0, font=(mifuente, tamano_fuente))
+barra_desplz = tk.Scrollbar(texto, orient='vertical', command=texto.yview)
+texto.config(yscrollcommand=barra_desplz.set)
+barra_desplz.pack(side=RIGHT, fill='y')
+texto.pack(expand=True, fill=BOTH)
 
-#numeros = tk.Label(codigo, text)
+texto.tag_config('mismalinea', background=color_fondo_widgets, foreground='black')
+texto.tag_config('nuevalinea', background='#98FB98', foreground='black')
+texto.tag_config('lineaeliminada', background='#ff0000', foreground='black')
 
 ########## ▲ CAJA DEL CÓDIGO ▲ ##########
 
