@@ -13,7 +13,7 @@ def raton_dentro(e):
 def raton_fuera(e):
     e.widget['background'] = '#ffffff'
 
-# Al hacer click en el botón pertinente, pide seleccionar archivo y escribe su nombre y contenido el la interfaz del programa 
+# Al hacer click en el botón pertinente, pide seleccionar un archivo y escribe su nombre y contenido en la interfaz del programa 
 def seleccionar_archivo(archA, archB, ruta, ambival_arch):
     ruta_archivo = askopenfilename()
     if ruta_archivo != "":
@@ -37,9 +37,9 @@ def escribir_contenido(ruta_archivo, ambival_arch):
     lineas = archivo.readlines()
     for i, linea in enumerate(lineas):
         if ambival_arch == "doc1":
-            lista_lineas1.append(linea.strip())
+            lista_lineas1.append(linea)
         if ambival_arch == "doc2":
-            lista_lineas2.append(linea.strip())
+            lista_lineas2.append(linea)
         
         texto.insert(END, linea)
 ##        texto.configure(state="disabled")
@@ -55,33 +55,53 @@ def cambiar_contenido(archA, archB, ruta):
     escribir_contenido(ruta, "")
 
 # No se usa
-def comparar0(lineasA, lineasB):
-    lista_lineas = []
-    for i, lineaA in enumerate(lineasA):
-        mismalinea = False
-        for lineaB in lineasB:
-            if lineaA == lineaB:
-                mismalinea = True
-        if mismalinea == True:
-            lista_lineas.append(tk.Label(codigo, text=lineaA, bg=color_fondo_widgets, font=(mifuente, tamano_fuente), anchor="nw"))
-            lista_lineas[i].grid(sticky="w", row=i, column=0)
-        else:
-            lista_lineas.append(tk.Label(codigo, text=lineaA, bg='#98FB98', font=(mifuente, tamano_fuente), anchor="nw"))
-            lista_lineas[i].grid(sticky="w", row=i, column=0)
+##def comparar0(lineasA, lineasB):
+##    lista_lineas = []
+##    for i, lineaA in enumerate(lineasA):
+##        mismalinea = False
+##        for lineaB in lineasB:
+##            if lineaA == lineaB:
+##                mismalinea = True
+##        if mismalinea == True:
+##            lista_lineas.append(tk.Label(codigo, text=lineaA, bg=color_fondo_widgets, font=(mifuente, tamano_fuente), anchor="nw"))
+##            lista_lineas[i].grid(sticky="w", row=i, column=0)
+##        else:
+##            lista_lineas.append(tk.Label(codigo, text=lineaA, bg='#98FB98', font=(mifuente, tamano_fuente), anchor="nw"))
+##            lista_lineas[i].grid(sticky="w", row=i, column=0)
 
 def comparar(lineasA, lineasB):
     texto.delete('1.0', END)    # Limpia el área de texto
     for i, lineaA in enumerate(lineasA):
         mismalinea = False
-        for lineaB in lineasB:
+        for j, lineaB in enumerate(lineasB):
             if lineaA == lineaB:
                 mismalinea = True
         if mismalinea == True:
-            texto.insert(END, lineaA + "\n", 'mismalinea')
+            texto.insert(END, lineaA, 'mismalinea')
         else:
-            texto.insert(END, lineaA + "\n", 'nuevalinea')
+            texto.insert(END, lineaA, 'nuevalinea')
     
 ########## ▲ DECLARACIÓN DE FUNCIONES ▲ ##########
+
+##class MiBoton(Button):
+##    def __init__(self, image, row, column, color, borderwidth, command, **kwargs):
+##        self.image = image
+##        self.row = row
+##        self.column = column
+##        self.command = command
+##        self.color = color
+##        super().__init__()
+##        self['bg'] = self.color
+##        self['image'] = self.image
+##        self['command'] = self.command
+##        self.grid(row=self.row, column=self.column)
+##
+##    def raton_dentro(e):
+##        e.widget['background'] = '#f2f2f2'
+##
+##    def raton_fuera(e):
+##        e.widget['background'] = '#ffffff'
+    
 
 ########## ▼ DIMENSIONES DE LA VENTANA ▼ ##########
 
@@ -93,14 +113,14 @@ altura_ventana = (user32.GetSystemMetrics(1))
 
 ########## ▲ DIMENSIONES DE LA VENTANA ▲ ##########
 
-color_fondo = '#4C4A48' # '#DDDDDD'
-color_borde = '#000000' # '#7B7B7B'
+color_fondo = '#DDDDDD' # '#4C4A48' 
+color_borde = '#7B7B7B' # '#000000'
 color_texto = 'black'
 color_fondo_widgets = 'white'
-grosor_borde = 3
+grosor_borde = 2
 margen1 = 10
 margen2 = 5
-mifuente = 'Verdana 11'
+mifuente = 'Verdana'
 mifuente2 = 'Verdana 11 bold'
 tamano_fuente = 11
 
@@ -189,11 +209,11 @@ numeros.pack(padx=(0, 5), pady=0, side=LEFT)
 
 codigo = tk.Frame(cuadro)
 codigo.config(width=anchura_ventana, height=altura_ventana, bg=color_fondo_widgets, highlightbackground=color_borde, highlightthickness=grosor_borde)
-codigo.pack(padx=0, pady=0, side=RIGHT)
+codigo.pack(padx=0, pady=0)
 codigo.pack_propagate(False)
 
-texto = tk.Text(codigo, height=40, highlightcolor='red', padx=5, pady=5, bg=color_fondo_widgets, borderwidth=0, font=(mifuente, tamano_fuente))
-barra_desplz = tk.Scrollbar(texto, orient='vertical', command=texto.yview)
+texto = tk.Text(codigo, highlightcolor='red', padx=5, pady=5, bg=color_fondo_widgets, borderwidth=0, font=(mifuente, tamano_fuente))
+barra_desplz = tk.Scrollbar(codigo, orient='vertical', command=texto.yview)
 texto.config(yscrollcommand=barra_desplz.set)
 barra_desplz.pack(side=RIGHT, fill='y')
 texto.pack(expand=True, fill=BOTH)
