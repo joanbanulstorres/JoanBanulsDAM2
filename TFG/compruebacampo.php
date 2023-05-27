@@ -3,7 +3,7 @@
     echo $_POST['contenido_campo'];
 
     /* include "config.php";
-    $mysqli = new  mysqli($mydbserver, $mydbuser, $mydbpassword, $mydb);
+    $mysqli = new mysqli($mydbserver, $mydbuser, $mydbpassword, $mydb);
 
     $consulta = "SELECT * FROM usuarios WHERE `".$_POST['nombre_campo']."` = '".$_POST['contenido_campo']."'";
     $resultado = $mysqli -> query($consulta);

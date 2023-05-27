@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="contieneformulario">
-            <h1>TFG</h1>
+            <h1>Limpiadores Medioambientales</h1>
             <h2>Crear cuenta</h2>
             <form id="form_registro" name="form_registo" onsubmit="return enviar_formulario()" action="procesaregistro.php" method="POST">
                 <div class="form_div">
@@ -32,7 +32,7 @@
                     <label id="contrasena_label" for="">Contraseña</label>
                     <button id="ver_contrasena" type="button"><img id="icono_ver" src="estilo/img/ver1.png" alt="Ver"></img></button>
                 </div>
-                <input id="enviar_registro" type="submit" value="Continuar">
+                <input id="enviar_registro" class="form_btn" type="submit" value="Continuar">
                 <p>¿Ya tienes una cuenta? <a href="login.php" style="text-decoration:none">Inicia sesión</a></p>
             </form>
         </div>

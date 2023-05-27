@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="contieneformulario">
-        <h1>TFG</h1>
+        <h1>Limpiadores Medioambientales</h1>
         <h2>Iniciar sesión</h2>
             <form id="form_login" action="procesalogin.php" method="POST">
                 <div class="form_div">

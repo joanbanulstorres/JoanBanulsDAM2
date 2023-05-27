@@ -2,7 +2,7 @@
 
     include "config.php";
 
-    $mysqli = new  mysqli($mydbserver, $mydbuser, $mydbpassword, $mydb);
+    $mysqli = new mysqli($mydbserver, $mydbuser, $mydbpassword, $mydb);
     $consulta = "SELECT * FROM usuarios WHERE `email` = '".$_POST['email']."' OR `usuario` = '".$_POST['usuario']."'";
     $resultado = $mysqli -> query($consulta);
 
@@ -29,7 +29,7 @@
                                                 '".$_POST['contrasena']."'
                                             )
         ";
-        $mysqli->query($consulta2);
+        $mysqli -> query($consulta2);
 
         session_start();
         $_SESSION['usuario'] = $_POST['usuario'];

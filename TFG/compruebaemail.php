@@ -2,7 +2,7 @@
 
     include "config.php";
 
-    $mysqli = new  mysqli($mydbserver, $mydbuser, $mydbpassword, $mydb);
+    $mysqli = new mysqli($mydbserver, $mydbuser, $mydbpassword, $mydb);
     $consulta = "SELECT * FROM usuarios WHERE `email` = '".$_POST['email']."'";
     $resultado = $mysqli -> query($consulta);
 

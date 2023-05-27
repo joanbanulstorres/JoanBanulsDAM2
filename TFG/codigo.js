@@ -1,6 +1,6 @@
 // Comprueba que todos los campos del formulario de registro estén completados correctamente, en caso contrario muestra un mensaje de error
 function enviar_formulario(){
-    var inputs = $('.form_input');
+    var inputs = $('#form_registro .form_input');
     var contador_errores = inputs.length;
     for(var i=0; i<inputs.length; i++){
         // Por cada campo que esté correctamente completado, se resta uno al contador de errores de los campos
@@ -23,7 +23,7 @@ $(document).ready(function(){
     ///////////////////////// ▼ FORMULARIOS ▼ /////////////////////////
 
     // Al enfocar un campo, cambia el color de su borde y el color y posición de su placeholder
-    $('.form_input').on('focus', function(){
+    $('#form_registro .form_input, #form_login .form_input').on('focus', function(){
         segunda_clase = "." + $(this).attr('class').split(' ')[1];    // Se obtiene la segunda clase del input seleccionado para ver si es el de nombre, apellidos, email, usuario o contrasena
         $('.form_input' + segunda_clase).css({
             'border': '2px solid var(--color-focalizado)',
@@ -447,4 +447,24 @@ $(document).ready(function(){
     });
 
     ///////////////////////// ▲ FORMULARIO INICIO DE SESIÓN ▲ /////////////////////////
+
+
+    ///////////////////////// ▼ PÁGINA PRINCIPAL ▼ /////////////////////////
+
+    $('.btn_inscribirse').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: 'inscribirse.php',
+            data: {'id_inc': $(this).attr('data-id_incursion')},
+            success: function(resultado){
+                return resultado;
+            },
+            error: function(error){
+                alert(error);
+            }
+        });
+    });
+
+    ///////////////////////// ▲ PÁGINA PRINCIPAL ▲ /////////////////////////
+
 });
