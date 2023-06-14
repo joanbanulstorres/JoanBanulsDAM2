@@ -167,6 +167,7 @@ raiz.state('zoomed')                                                            
 raiz.geometry('%dx%d' % resolucion)
 raiz.resizable(True, True)
 raiz.minsize(int(anchura_ventana/1.5), int(altura_ventana/1.5))
+raiz.config(bg=color_fondo)
 
 ########## ▲ VENTANA PRINCIPAL ▲ ##########
 
@@ -197,7 +198,6 @@ comparar_menu = tk.Menu(menubar, tearoff=0)
 menubar.add_cascade(label="Comparar", menu=comparar_menu)
 comparar_menu.add_command(label="Comparar con archivo*")
 comparar_menu.add_command(label="Comparar con múltiples archivos*")
-
 
 ############ ▲ MENÚ ▲ ##########
 
@@ -266,16 +266,17 @@ comparar_menu.add_command(label="Comparar con múltiples archivos*")
 ########## ▼ CAJA DEL CÓDIGO ▼ ##########
 
 cuadro = tk.Frame(raiz)
-cuadro.config(bg=color_fondo)
-cuadro.pack(padx=margen1, pady=(margen2, margen1), side=LEFT)
+cuadro.config(width=300, bg=color_fondo)
+cuadro.pack(padx=5, pady=5, side=LEFT)
+cuadro.config(highlightbackground='#FF0000', highlightthickness=grosor_borde)
 
 cabecera = tk.Frame(cuadro)
-cabecera.config(width=anchura_ventana, height=30, bg=color_fondo_widgets, highlightbackground=color_borde, highlightthickness=grosor_borde)
-cabecera.pack(pady=5)
+cabecera.config(width=anchura_ventana/2 + 35, height=30, bg=color_fondo_widgets, highlightbackground=color_borde, highlightthickness=grosor_borde)
+cabecera.pack(pady=(0,5))
 cabecera.pack_propagate(False)
 
 ruta_cabecera = tk.Label(cabecera)
-ruta_cabecera.config(text="Ruta actual", bg=color_fondo_widgets, font=(mifuente, 9))
+ruta_cabecera.config(bg=color_fondo_widgets, font=(mifuente, 9))
 ruta_cabecera.pack()
 
 numeros = tk.Frame(cuadro)
@@ -283,7 +284,7 @@ numeros.config(width=30, height=altura_ventana, bg=color_fondo_widgets, highligh
 numeros.pack(padx=(0, 5), pady=0, side=LEFT)
 
 codigo = tk.Frame(cuadro)
-codigo.config(width=anchura_ventana, height=altura_ventana, bg=color_fondo_widgets, highlightbackground=color_borde, highlightthickness=grosor_borde)
+codigo.config(width=anchura_ventana/2, height=altura_ventana, bg=color_fondo_widgets, highlightbackground=color_borde, highlightthickness=grosor_borde)
 codigo.pack(padx=0, pady=0)
 codigo.pack_propagate(False)
 

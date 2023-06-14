@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Imprimir Página</title>
+        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <script defer src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+        <style>
+            *{
+                font-family: sans-serif;
+            }
+            @page{
+                @bottom-right{
+                    content: "Página " counter(page) " de " counter(pages);
+                }
+            }
+            body{
+                margin: 0px;
+                padding: 0px;
+            }
+            form{
+                margin: 20px;
+            }
+            h2{
+                margin: 0px 0px 10px;
+            }
+            input[type=url]{
+                width: 400px;
+            }
+            input[type=url], .form-div{
+                margin-bottom: 20px;
+            }
+            .pagedjs_margin-content{
+                color: gray;
+                font-size: 11px;;
+            }
+        </style>
+        <script>
+
+            function printExternal(url) {
+                var printWindow = window.open(url, 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
+                printWindow.addEventListener('load', function() {
+                    if (Boolean(printWindow.chrome)) {
+                        printWindow.print();
+                        setTimeout(function(){
+                            printWindow.close();
+                        }, 500);
+                    } else {
+                        printWindow.print();
+                        printWindow.close();
+                    }
+                }, true);
+            }
+
+            $(document).ready(function(){
+
+                $(document).on('submit', '#imprimirpagina', function() {
+                    return false;
+                });
+
+            });
+
+            window.PagedConfig = {
+                auto: false
+            };
+
+            // window.addEventListener('load', () => {
+            //     const btnE = document.querySelector('.btn_imprimir');
+
+            //     btnE.addEventListener('click', () => {
+            //         window.PagedPolyfill.preview().then(() => {
+            //             window.print();
+            //         });
+            //     })
+            // })
+
+            function imprimir(){
+                window.PagedPolyfill.preview().then(() => {
+                        $('@bottom-right').attr('content', 'aaaaaa');
+                        window.print();
+                    });
+            }
+
+        </script>
+    </head>
+    <body>
+        <form id="imprimirpagina">
+            <h1>Imprimir página</h1>
+            <div class="form_div">
+                <label>URL: </label>
+                <input type="url" name="miurl">
+            </div>
+            <h2>Numeración</h2>
+            <div class="form-div">
+                <label>Formato:</label>
+                <div>
+                    <input type="radio" name="formato" value="formato-1">
+                    <label for="formato-1">X</label>
+                </div>
+                <div>
+                    <input type="radio" name="formato" value="formato-2">
+                    <label for="formato-2">X de Y</label>
+                </div>
+                <div>
+                    <input type="radio" name="formato" value="formato-3" checked>
+                    <label for="formato-3">Página X de Y</label>
+                </div>   
+            </div>
+            <div class="form-div">
+                <label>Alineado:</label>
+                <div>
+                    <input type="radio" name="alineado" value="alineado-izquierda">
+                    <label for="alineado-izquierda">Izquierda</label>
+                </div>
+                <div>
+                    <input type="radio" name="alineado" value="alineado-centro">
+                    <label for="alineado-centro">Centro</label>
+                </div>
+                <div>
+                    <input type="radio" name="alineado" value="alineado-derecha" checked>
+                    <label for="alineado-derecha">Derecha</label>
+                </div>   
+            </div>
+            <input type="submit" value="Imprimir" class="btn_imprimir" onclick="imprimir()">
+        </form>
+        
+    </body>
+</html>
